@@ -10,11 +10,11 @@
             "legacyDecorator": true,
             "decoratorMetadata": true
         },
-        "target": "es2022",
-        "baseUrl": ".",
-        "paths": {
-            "@src/*": ["src/*"]
-        }
+        "target": "es2022"
+        // "baseUrl": ".",
+        // "paths": {
+        //     "@src/*": ["src/*"]
+        // }
     },
     "module": {
         "type": "commonjs"
