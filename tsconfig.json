@@ -1,11 +1,13 @@
 {
     "$schema": "https://json.schemastore.org/tsconfig",
-    "display": "Node LTS + Strictest",
-    "_version": "18.12.1",
     "compilerOptions": {
-        "lib": ["es2022"],
-        "module": "commonjs",
-        "target": "es2022",
+        "baseUrl": ".",
+        "paths": {
+            "@src/*": ["src/*"]
+        },
+        "lib": ["ES2022"],
+        "module": "ESNext",
+        "target": "ES2022",
         "strict": true,
         "esModuleInterop": true,
         "skipLibCheck": true,
@@ -21,7 +23,8 @@
         "noUncheckedIndexedAccess": true,
         "noUnusedLocals": true,
         "noUnusedParameters": true,
-        "importsNotUsedAsValues": "error",
-        "checkJs": true
-    }
+        "importsNotUsedAsValues": "error"
+    },
+    "include": ["**/*.ts", "**/*.cjs", "**/*.mjs"],
+    "exclude": ["node_modules"]
 }
