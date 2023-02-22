@@ -1,5 +1,15 @@
-console.log("Test");
+import Fastify from 'fastify';
 
-for (let i = 0; i < 10; i++) {
-    console.log(i);
-}
+const fastify = Fastify({
+    logger: true
+})
+
+
+
+fastify.listen({ port: 8080 }, function (err, address) {
+    if (err) {
+        fastify.log.error(err);
+        process.exit(1);
+    }
+    console.log(`Server listening at ${address}`);
+})
