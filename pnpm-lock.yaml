@@ -3,6 +3,7 @@ lockfileVersion: 5.4
 specifiers:
   '@apollo/server': ^4.4.0
   '@ianvs/prettier-plugin-sort-imports': ^3.7.1
+  '@prisma/client': ^4.10.1
   '@swc/cli': ^0.1.62
   '@swc/core': ^1.3.35
   '@types/node': ^18.14.0
@@ -20,6 +21,7 @@ specifiers:
 
 dependencies:
   '@apollo/server': 4.4.0_graphql@16.6.0
+  '@prisma/client': 4.10.1_prisma@4.10.1
   fastify: 4.13.0
   fastify-plugin: 4.5.0
   graphql: 16.6.0
@@ -590,10 +592,27 @@ packages:
       fastq: 1.15.0
     dev: true
 
+  /@prisma/client/4.10.1_prisma@4.10.1:
+    resolution: {integrity: sha512-VonXLJZybdt8e5XZH5vnIGCRNnIh6OMX1FS3H/yzMGLT3STj5TJ/OkMcednrvELgk8PK89Vo3aSh51MWNO0axA==}
+    engines: {node: '>=14.17'}
+    requiresBuild: true
+    peerDependencies:
+      prisma: '*'
+    peerDependenciesMeta:
+      prisma:
+        optional: true
+    dependencies:
+      '@prisma/engines-version': 4.10.1-2.aead147aa326ccb985dcfed5b065b4fdabd44b19
+      prisma: 4.10.1
+    dev: false
+
+  /@prisma/engines-version/4.10.1-2.aead147aa326ccb985dcfed5b065b4fdabd44b19:
+    resolution: {integrity: sha512-tsjTho7laDhf9EJ9EnDxAPEf7yrigSMDhniXeU4YoWc7azHAs4GPxRi2P9LTFonmHkJLMOLjR77J1oIP8Ife1w==}
+    dev: false
+
   /@prisma/engines/4.10.1:
     resolution: {integrity: sha512-B3tcTxjx196nuAu1GOTKO9cGPUgTFHYRdkPkTS4m5ptb2cejyBlH9X7GOfSt3xlI7p4zAJDshJP4JJivCg9ouA==}
     requiresBuild: true
-    dev: true
 
   /@protobufjs/aspromise/1.1.2:
     resolution: {integrity: sha512-j+gKExEuLmKwvz3OgROXtrJ2UG2x8Ch2YZUxahh+s1F2HZ+wAceUNLkvy6zKCPVRkU++ZWQrdxsUeQXmcg4uoQ==}
@@ -2246,7 +2265,6 @@ packages:
     requiresBuild: true
     dependencies:
       '@prisma/engines': 4.10.1
-    dev: true
 
   /process-warning/2.1.0:
     resolution: {integrity: sha512-9C20RLxrZU/rFnxWncDkuF6O999NdIf3E1ws4B0ZeY3sRVPzWBMsYDE2lxjxhiXxg464cQTgKUGm8/i6y2YGXg==}

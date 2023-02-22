@@ -8,10 +8,15 @@
         "watch-dev": "nodemon --watch \"dist/**/*\" -e js ./dist/main.js",
         "build": "swc src --out-dir dist",
         "start": "NODE_ENV=production node dist/main.js",
-        "clean": "rm -rf dist"
+        "clean": "rm -rf dist",
+        "db:push": "prisma db push",
+        "db:generate": "prisma generate",
+        "db:migrate": "prisma migrate dev",
+        "db:validate": "prisma validate"
     },
     "dependencies": {
         "@apollo/server": "^4.4.0",
+        "@prisma/client": "^4.10.1",
         "fastify": "^4.13.0",
         "fastify-plugin": "^4.5.0",
         "graphql": "^16.6.0"
