@@ -24,7 +24,7 @@
     "devDependencies": {
         "@ianvs/prettier-plugin-sort-imports": "^3.7.1",
         "@swc/cli": "^0.1.62",
-        "@swc/core": "^1.3.35",
+        "@swc/core": "^1.3.36",
         "@types/node": "^18.14.0",
         "@types/prettier": "^2.7.2",
         "chokidar": "^3.5.3",
