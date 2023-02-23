@@ -3,7 +3,9 @@
     "compilerOptions": {
         "baseUrl": ".",
         "paths": {
-            "@src/*": ["src/*"]
+            "@src/*": ["src/*"],
+            "@plugins/*": ["src/plugins/*"],
+            "@routers/*": ["src/routers/*"]
         },
         "lib": ["ES2022"],
         "module": "ESNext",
@@ -17,7 +19,7 @@
         "allowUnusedLabels": false,
         "allowUnreachableCode": false,
         "exactOptionalPropertyTypes": true,
-        "noEmit": true,
+        // "noEmit": true,
         "noFallthroughCasesInSwitch": true,
         "noImplicitOverride": true,
         "noImplicitReturns": true,
