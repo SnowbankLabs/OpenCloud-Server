@@ -8,7 +8,7 @@
             "@routers/*": ["src/routers/*"]
         },
         "lib": ["ES2022"],
-        "module": "ESNext",
+        "module": "CommonJS",
         "target": "ES2022",
         "strict": true,
         "esModuleInterop": true,
@@ -19,14 +19,12 @@
         "allowUnusedLabels": false,
         "allowUnreachableCode": false,
         "exactOptionalPropertyTypes": true,
-        // "noEmit": true,
         "noFallthroughCasesInSwitch": true,
         "noImplicitOverride": true,
         "noImplicitReturns": true,
         "noPropertyAccessFromIndexSignature": true,
         "noUncheckedIndexedAccess": true,
         "noUnusedLocals": true,
-        "noUnusedParameters": true,
         "importsNotUsedAsValues": "error"
     },
     "include": ["**/*.ts", "**/*.cjs", "**/*.mjs"],

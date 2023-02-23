@@ -1,9 +1,9 @@
-import Fastify from "fastify";
+import fastify from "fastify";
 
 import prismaPlugin from "@plugins/prisma";
 import authRouter from "@routers/authRouter";
 
-const app = Fastify({
+const app = fastify({
     logger: true,
 });
 
@@ -13,10 +13,11 @@ app.register(prismaPlugin);
 // Register Routes
 app.register(authRouter, { prefix: "/api/auth" });
 
-app.listen({ port: 8080 }, function (err, address) {
-    if (err) {
+(async () => {
+    try {
+        await app.listen({ port: 8080 });
+    } catch (err) {
         app.log.error(err);
         process.exit(1);
     }
-    console.log(`Server listening at ${address}`);
-});
+})();

@@ -3,28 +3,33 @@
     "version": "0.1.0",
     "private": true,
     "scripts": {
-        "dev": "concurrently \"npm run watch-compile\" \"npm run watch-dev\"",
-        "watch-compile": "swc src -w --out-dir dist",
-        "watch-dev": "nodemon --watch \"dist/**/*\" -e js ./dist/main.js",
-        "build": "swc src --out-dir dist",
-        "start": "node dist/main.js",
-        "clean": "rm -rf dist",
+        "dev": "nodemon",
         "db:push": "prisma db push",
         "db:generate": "prisma generate",
         "db:migrate": "prisma migrate dev",
         "db:validate": "prisma validate"
+    },
+    "nodemonConfig": {
+        "ignore": [
+            ".git",
+            "node_modules"
+        ],
+        "watch": [
+            "src"
+        ],
+        "exec": "node -r tsconfig-paths/register -r ts-node/register ./src/index.ts",
+        "ext": "ts, js"
     },
     "dependencies": {
         "@apollo/server": "^4.4.0",
         "@prisma/client": "^4.10.1",
         "fastify": "^4.13.0",
         "fastify-plugin": "^4.5.0",
-        "graphql": "^16.6.0"
+        "graphql": "^16.6.0",
+        "tsconfig-paths": "^4.1.2"
     },
     "devDependencies": {
         "@ianvs/prettier-plugin-sort-imports": "^3.7.1",
-        "@swc/cli": "^0.1.62",
-        "@swc/core": "^1.3.36",
         "@types/node": "^18.14.0",
         "@types/prettier": "^2.7.2",
         "chokidar": "^3.5.3",
