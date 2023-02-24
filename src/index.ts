@@ -1,7 +1,7 @@
 import Fastify from "fastify";
 
 import prismaPlugin from "@plugins/prisma";
-import authRouter from "@routers/authRouter";
+import authRouter from "@src/systems/auth/auth.routes";
 
 const server = Fastify({
     logger: true,
@@ -12,6 +12,11 @@ server.register(prismaPlugin);
 
 // Register Routes
 server.register(authRouter, { prefix: "/api/auth" });
+
+// Server Health Check
+server.get("/api/health", async () => {
+    return { status: "OK" };
+});
 
 (async () => {
     try {
