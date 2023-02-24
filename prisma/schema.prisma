@@ -16,7 +16,6 @@ model User {
     firstName String?
     lastName  String?
     password  String
-    salt      String
     role      Role    @default(USER)
 
     @@map("Users")
