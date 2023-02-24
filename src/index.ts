@@ -1,9 +1,9 @@
-import fastify from "fastify";
+import Fastify from "fastify";
 
 import prismaPlugin from "@plugins/prisma";
 import authRouter from "@routers/authRouter";
 
-const app = fastify({
+const app = Fastify({
     logger: true,
 });
 
