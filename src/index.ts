@@ -1,13 +1,19 @@
+// Environment variables must be loaded before anything else
+import * as dotenv from "dotenv";
+dotenv.config();
+
 import Fastify from "fastify";
 
+import { env } from "@env/server";
 import prismaPlugin from "@utils/prisma";
 import authRouter from "@systems/auth/auth.routes";
 
+// Initialize Fastify Instance
 const server = Fastify({
     logger: true,
 });
 
-// Register Prisma Plugin
+// Register Utility Plugins
 server.register(prismaPlugin);
 
 // Register Routes

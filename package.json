@@ -22,8 +22,10 @@
     },
     "dependencies": {
         "@apollo/server": "^4.4.0",
+        "@fastify/jwt": "^6.6.0",
         "@prisma/client": "^4.10.1",
         "argon2": "^0.30.3",
+        "dotenv": "^16.0.3",
         "fastify": "^4.13.0",
         "fastify-plugin": "^4.5.0",
         "fastify-zod": "^1.2.0",
