@@ -4,7 +4,7 @@
         "baseUrl": ".",
         "paths": {
             "@src/*": ["src/*"],
-            "@plugins/*": ["src/plugins/*"],
+            "@utils/*": ["src/utils/*"],
             "@systems/*": ["src/systems/*"]
         },
         "lib": ["ES2022"],

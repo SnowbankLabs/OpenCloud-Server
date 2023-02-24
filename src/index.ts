@@ -1,6 +1,6 @@
 import Fastify from "fastify";
 
-import prismaPlugin from "@plugins/prisma";
+import prismaPlugin from "@utils/prisma";
 import authRouter from "@systems/auth/auth.routes";
 
 const server = Fastify({
