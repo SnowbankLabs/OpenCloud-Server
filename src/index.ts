@@ -9,6 +9,7 @@ import FastifyJWT from "@fastify/jwt";
 import { env } from "@env/server";
 import prismaPlugin from "@utils/prisma";
 import authRouter from "@systems/auth/auth.routes";
+import { authSchemas } from "@systems/auth/auth.schemas";
 
 // Initialize Fastify Instance
 const server = Fastify({
@@ -28,6 +29,10 @@ server.decorate("authenticate", async function (request: FastifyRequest, reply: 
         reply.send(err);
     }
 });
+
+for (const schema of [...authSchemas]) {
+    server.addSchema(schema);
+  }
 
 // Register Routes
 server.register(authRouter, { prefix: "/api/auth" });
