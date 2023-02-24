@@ -1,7 +1,7 @@
 import type { FastifyInstance } from "fastify";
 
-async function authRouter(app: FastifyInstance) {
-    app.get("/", async () => {
+async function authRouter(server: FastifyInstance) {
+    server.get("/", async () => {
         return { hello: "world" };
     });
 }
