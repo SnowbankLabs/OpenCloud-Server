@@ -4,6 +4,7 @@
         "baseUrl": ".",
         "paths": {
             "@src/*": ["src/*"],
+            "@env/*": ["src/env/*"],
             "@utils/*": ["src/utils/*"],
             "@systems/*": ["src/systems/*"]
         },
