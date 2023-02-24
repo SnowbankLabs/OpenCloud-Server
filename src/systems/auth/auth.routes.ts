@@ -9,7 +9,7 @@ async function authRouter(server: FastifyInstance) {
         url: "/create",
         schema: {
             body: $ref("createUserSchema"),
-            response: $ref("createUserResponseSchema"),
+            response: { 201: $ref("createUserResponseSchema") },
         },
         handler: createUserHandler,
     });
@@ -19,7 +19,7 @@ async function authRouter(server: FastifyInstance) {
         url: "/login",
         schema: {
             body: $ref("loginSchema"),
-            response: $ref("loginResponseSchema"),
+            response: { 200: $ref("loginResponseSchema") },
         },
         handler: loginHandler,
     });
