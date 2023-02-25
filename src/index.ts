@@ -30,6 +30,7 @@ server.decorate("authenticate", async function (request: FastifyRequest, reply: 
     }
 });
 
+// Register Route Schemas
 for (const schema of [...authSchemas]) {
     server.addSchema(schema);
   }
