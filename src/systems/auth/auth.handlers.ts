@@ -8,14 +8,18 @@ export async function createUserHandler(
     request: FastifyRequest<{ Body: CreateUserInput }>,
     reply: FastifyReply,
 ) {
-    const prisma = this.prisma;
-    const { password, ...rest } = request.body;
+    const { username, firstName, lastName, password } = request.body;
 
     try {
         const hashedPassword = await argon2.hash(password);
 
-        const user = await prisma.user.create({
-            data: { ...rest, password: hashedPassword },
+        const user = await this.prisma.user.create({
+            data: {
+                username: username,
+                firstName: firstName != undefined ? firstName : null,
+                lastName: lastName != undefined ? lastName : null,
+                password: hashedPassword,
+            },
         });
 
         return reply.code(201).send(user);

@@ -8,8 +8,8 @@ const userBase = {
             invalid_type_error: "Username must be a string",
         })
         .min(3, { message: "Must be 1 or more characters long" }),
-    firstName: z.string(),
-    lastName: z.string(),
+    firstName: z.string().optional(),
+    lastName: z.string().optional(),
 };
 
 const createUserSchema = z.object({
