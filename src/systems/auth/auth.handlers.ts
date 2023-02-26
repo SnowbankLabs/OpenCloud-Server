@@ -34,10 +34,9 @@ export async function loginHandler(
     request: FastifyRequest<{ Body: LoginInput }>,
     reply: FastifyReply,
 ) {
-    const prisma = this.prisma;
     const body = request.body;
 
-    const user = await prisma.user.findUnique({
+    const user = await this.prisma.user.findUnique({
         where: { username: body.username },
     });
 
@@ -54,4 +53,20 @@ export async function loginHandler(
     }
 
     return reply.code(401).send({ message: "Invalid username or password" });
+}
+
+export async function infoHandler(this: FastifyInstance, request: FastifyRequest, reply: FastifyReply) {
+    const user = await this.prisma.user.findUnique({ where: { id: request.user.id } });
+
+    if (!user) {
+        return reply.code(500).send({ message: "Something went wrong. Please try again" });
+    }
+
+    return {
+        id: user.id,
+        username: user.username,
+        firstName: user.firstName,
+        lastName: user.lastName,
+        role: user.role,
+    };
 }

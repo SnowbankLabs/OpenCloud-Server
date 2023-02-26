@@ -1,7 +1,7 @@
 import type { FastifyInstance } from "fastify";
 
 import { $ref } from "./auth.schemas";
-import { createUserHandler, loginHandler } from "./auth.handlers";
+import { createUserHandler, loginHandler, infoHandler } from "./auth.handlers";
 
 async function authRouter(server: FastifyInstance) {
     server.route({
@@ -22,6 +22,13 @@ async function authRouter(server: FastifyInstance) {
             response: { 200: $ref("loginResponseSchema") },
         },
         handler: loginHandler,
+    });
+
+    server.route({
+        method: "GET",
+        url: "/info",
+        onRequest: [server.authenticate],
+        handler: infoHandler,
     });
 
     server.route({
