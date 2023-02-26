@@ -3,11 +3,9 @@ import * as dotenv from "dotenv";
 dotenv.config();
 
 import Fastify from "fastify";
-import type { FastifyRequest, FastifyReply } from "fastify";
-import FastifyJWT from "@fastify/jwt";
 
-import { env } from "@env/server";
 import prismaPlugin from "@utils/prisma";
+import authenticationPlugin from "@utils/authentication";
 import authRouter from "@systems/auth/auth.routes";
 import { authSchemas } from "@systems/auth/auth.schemas";
 
@@ -18,17 +16,7 @@ const server = Fastify({
 
 // Register Utility Plugins
 server.register(prismaPlugin);
-server.register(FastifyJWT, {
-    secret: env.AUTH_SECRET,
-});
-
-server.decorate("authenticate", async function (request: FastifyRequest, reply: FastifyReply) {
-    try {
-        await request.jwtVerify();
-    } catch (err) {
-        reply.send(err);
-    }
-});
+server.register(authenticationPlugin);
 
 // Register Route Schemas
 for (const schema of [...authSchemas]) {

@@ -23,6 +23,15 @@ async function authRouter(server: FastifyInstance) {
         },
         handler: loginHandler,
     });
+
+    server.route({
+        method: "GET",
+        url: "/protected-route",
+        onRequest: [server.authenticate],
+        handler: async () => {
+            return { message: "You are authorized to see this message" };
+        },
+    });
 }
 
 export default authRouter;
