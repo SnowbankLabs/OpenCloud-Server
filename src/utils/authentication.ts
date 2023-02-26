@@ -11,6 +11,16 @@ declare module "fastify" {
     }
 }
 
+declare module "@fastify/jwt" {
+    interface FastifyJWT {
+        user: {
+            id: string;
+            iat: number;
+            exp: number;
+        }
+    }
+}
+
 const authenticationPlugin: FastifyPluginAsync = fp(async (server, options) => {
     server.register(FastifyJWT, {
         secret: env.AUTH_SECRET,
