@@ -21,7 +21,6 @@
         "ext": "ts, js"
     },
     "dependencies": {
-        "@apollo/server": "^4.4.0",
         "@fastify/jwt": "^6.6.0",
         "@prisma/client": "^4.10.1",
         "argon2": "^0.30.3",
