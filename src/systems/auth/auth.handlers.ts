@@ -11,6 +11,12 @@ export async function createUserHandler(
     const { username, firstName, lastName, password } = request.body;
 
     try {
+        // Verify that user does not already exist
+        if (!!(await this.prisma.user.findUnique({ where: { username: username } }))) {
+            return reply.code(400).send({ message: "User with username already exists" });
+        }
+
+        // Create user in db
         const hashedPassword = await argon2.hash(password);
 
         const user = await this.prisma.user.create({
