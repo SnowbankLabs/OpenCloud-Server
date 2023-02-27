@@ -15,8 +15,8 @@ const server = Fastify({
 });
 
 // Register Utility Plugins
-server.register(prismaPlugin);
-server.register(authenticationPlugin);
+void server.register(prismaPlugin);
+void server.register(authenticationPlugin);
 
 // Register Route Schemas
 for (const schema of [...authSchemas]) {
@@ -24,14 +24,14 @@ for (const schema of [...authSchemas]) {
 }
 
 // Register Routes
-server.register(authRouter, { prefix: "/api/auth" });
+void server.register(authRouter, { prefix: "/api/auth" });
 
 // Server Health Check
 server.get("/api/health", async () => {
     return { status: "OK" };
 });
 
-(async () => {
+void (async () => {
     try {
         await server.listen({ port: 8080, host: "0.0.0.0" });
 

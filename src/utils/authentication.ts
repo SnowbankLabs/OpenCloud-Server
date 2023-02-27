@@ -7,6 +7,7 @@ import { env } from "@env/server";
 // Use TypeScript module augmentation to declare the type of server.authenticate to be JWT authentication function
 declare module "fastify" {
     interface FastifyInstance {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         authenticate: any;
     }
 }
@@ -17,12 +18,12 @@ declare module "@fastify/jwt" {
             id: string;
             iat: number;
             exp: number;
-        }
+        };
     }
 }
 
-const authenticationPlugin: FastifyPluginAsync = fp(async (server, options) => {
-    server.register(FastifyJWT, {
+const authenticationPlugin: FastifyPluginAsync = fp(async (server) => {
+    void server.register(FastifyJWT, {
         secret: env.AUTH_SECRET,
     });
 
@@ -31,7 +32,7 @@ const authenticationPlugin: FastifyPluginAsync = fp(async (server, options) => {
         try {
             await request.jwtVerify();
         } catch (err) {
-            reply.send(err);
+            void reply.send(err);
         }
     });
 });

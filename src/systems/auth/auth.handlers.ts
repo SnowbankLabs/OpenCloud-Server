@@ -12,7 +12,7 @@ export async function createUserHandler(
 
     try {
         // Verify that user does not already exist
-        if (!!(await this.prisma.user.findUnique({ where: { username: username } }))) {
+        if (await this.prisma.user.findUnique({ where: { username: username } })) {
             return reply.code(400).send({ message: "User with username already exists" });
         }
 
