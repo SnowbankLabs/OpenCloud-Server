@@ -1,19 +1,19 @@
-# Snow Cloud Server
+# OpenCloud Server
 
-Snow Cloud is a free and open-source file server and management system. Snow Cloud works very similarly to other cloud file providers, like iCloud, OneDrive, or Google Drive.
+OpenCloud is a free and open-source file server and management system. OpenCloud works similarly to other cloud file providers, like iCloud, OneDrive, or Google Drive.
 
 ## About
 
-More information about Snow Cloud and its system architecture can be found at the main [Snow Cloud Overview Repo](https://github.com/SnowbankLabs/snow-cloud).
+More information about OpenCloud and its system architecture can be found at the [OpenCloud Overview Repo](https://github.com/SnowbankLabs/OpenCloud).
 
-# Snow Cloud Info
+# OpenCloud Info
 
 ### Repositories
 
--   [`snow-cloud`](https://github.com/SnowbankLabs/snow-cloud) : Contains an overview of the Snow Cloud system.
--   [`snow-cloud-server`](https://github.com/SnowbankLabs/snow-cloud-server) : Contains source code for the Snow Cloud backend server.
--   [`snow-cloud-webui`](https://github.com/SnowbankLabs/snow-cloud-webui) : Contains source code for the Snow Cloud web client.
+-   [`OpenCloud`](https://github.com/SnowbankLabs/OpenCloud) : Contains an overview of the OpenCloud system.
+-   [`OpenCloud-Server`](https://github.com/SnowbankLabs/OpenCloud-Server) : Contains source code for the OpenCloud backend server.
+-   [`OpenCloud-WebUI`](https://github.com/SnowbankLabs/OpenCloud-WebUI) : Contains source code for the OpenCloud web client.
 
 ## Legal
 
-Snow Cloud is developed and maintained by Snowbank Labs. Snow Cloud is distributed under the AGPL v3 license.
+OpenCloud is developed and maintained by Snowbank Labs. OpenCloud is distributed under the AGPL v3 license.
