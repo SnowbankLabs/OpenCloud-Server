@@ -28,6 +28,9 @@ async function authRouter(server: FastifyInstance) {
         method: "GET",
         url: "/info",
         onRequest: [server.authenticate],
+        schema: {
+            response: { 200: $ref("createUserResponseSchema") },
+        },
         handler: infoHandler,
     });
 }

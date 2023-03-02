@@ -85,11 +85,5 @@ export async function infoHandler(this: FastifyInstance, request: FastifyRequest
         return reply.code(500).send({ message: "Something went wrong. Please try again" });
     }
 
-    return {
-        id: user.id,
-        username: user.username,
-        firstName: user.firstName,
-        lastName: user.lastName,
-        role: user.role,
-    };
+    return reply.code(200).send(user);
 }
