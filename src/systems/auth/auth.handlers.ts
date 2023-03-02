@@ -19,6 +19,7 @@ export async function createUserHandler(
         // Create user in db
         const hashedPassword = await argon2.hash(password);
 
+        // Create user in db
         const user = await this.prisma.user.create({
             data: {
                 username: username,
@@ -28,7 +29,23 @@ export async function createUserHandler(
             },
         });
 
-        return reply.code(201).send(user);
+        // Create Root folder with default name "Files"
+        const rootFolder = await this.prisma.folder.create({
+            data: {
+                name: "Files",
+                ownerId: user.id,
+                type: "ROOT",
+            },
+        });
+
+        // Add root folder id to user
+        const userWithRoot = await this.prisma.user.update({
+            where: { id: user.id },
+            data: { rootFolderId: rootFolder.id },
+        });
+
+        // Return user
+        return reply.code(201).send(userWithRoot);
     } catch (e) {
         console.log(e);
         return reply.code(500).send(e);
