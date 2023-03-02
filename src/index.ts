@@ -8,6 +8,8 @@ import prismaPlugin from "@utils/prisma";
 import authenticationPlugin from "@utils/authentication";
 import authRouter from "@systems/auth/auth.routes";
 import { authSchemas } from "@systems/auth/auth.schemas";
+import fileSystemRouter from "@systems/fs/fs.routes";
+import { fsSchemas } from "@systems/fs/fs.schemas";
 
 // Initialize Fastify Instance
 const server = Fastify({
@@ -19,12 +21,13 @@ void server.register(prismaPlugin);
 void server.register(authenticationPlugin);
 
 // Register Route Schemas
-for (const schema of [...authSchemas]) {
+for (const schema of [...authSchemas, ...fsSchemas]) {
     server.addSchema(schema);
 }
 
 // Register Routes
 void server.register(authRouter, { prefix: "/api/auth" });
+void server.register(fileSystemRouter, { prefix: "/api/files" });
 
 // Server Health Check
 server.get("/api/health", async () => {
