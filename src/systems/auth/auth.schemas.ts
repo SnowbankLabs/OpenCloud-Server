@@ -25,6 +25,8 @@ const createUserSchema = z.object({
 const createUserResponseSchema = z.object({
     id: z.string(),
     ...userBase,
+    role: z.enum(["ADMIN", "USER"]),
+    rootFolderId: z.string(),
 });
 
 const loginSchema = z.object({
