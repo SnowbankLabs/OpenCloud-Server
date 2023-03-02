@@ -1,19 +1,5 @@
 [
   {
-    "_id": "85b58501-6979-4fc7-b382-a67c02c02117",
-    "colId": "224539bd-5c1b-42a1-a06c-9aecdf7fc4bf",
-    "containerId": "0f4bfb20-b81f-49ee-9955-14f95437a26d",
-    "name": "Create User",
-    "url": "",
-    "method": "POST",
-    "sortNum": 10000,
-    "created": "2023-03-02T02:30:42.113Z",
-    "modified": "2023-03-02T02:31:00.067Z",
-    "headers": [],
-    "params": [],
-    "tests": []
-  },
-  {
     "_id": "e24c6fc8-12ab-498f-84e1-0434d9b2c56f",
     "colId": "224539bd-5c1b-42a1-a06c-9aecdf7fc4bf",
     "containerId": "0f4bfb20-b81f-49ee-9955-14f95437a26d",
@@ -38,5 +24,24 @@
     "created": "2023-03-02T02:30:51.697Z",
     "modified": "2023-03-02T02:30:51.697Z",
     "headers": []
+  },
+  {
+    "_id": "50ab9757-f11f-4581-86de-d5acef3e788c",
+    "colId": "224539bd-5c1b-42a1-a06c-9aecdf7fc4bf",
+    "containerId": "0f4bfb20-b81f-49ee-9955-14f95437a26d",
+    "name": "Create User",
+    "url": "http://localhost:8080/api/auth/create",
+    "method": "POST",
+    "sortNum": 10000,
+    "created": "2023-03-02T02:35:28.925Z",
+    "modified": "2023-03-02T02:35:53.927Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n  \"username\": \"devmwang\",\n  \"password\": \"TestPass\"\n}",
+      "form": []
+    },
+    "tests": []
   }
 ]
