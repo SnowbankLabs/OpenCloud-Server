@@ -4,13 +4,18 @@
     "colId": "224539bd-5c1b-42a1-a06c-9aecdf7fc4bf",
     "containerId": "0f4bfb20-b81f-49ee-9955-14f95437a26d",
     "name": "Login",
-    "url": "",
+    "url": "http://localhost:8080/api/auth/login",
     "method": "POST",
     "sortNum": 20000,
     "created": "2023-03-02T02:30:48.000Z",
-    "modified": "2023-03-02T02:30:57.559Z",
+    "modified": "2023-03-02T02:42:05.655Z",
     "headers": [],
     "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n  \"username\": \"devmwang\",\n  \"password\": \"TestPass\"\n}",
+      "form": []
+    },
     "tests": []
   },
   {
