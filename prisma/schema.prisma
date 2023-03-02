@@ -10,17 +10,43 @@ datasource db {
     url      = env("DATABASE_URL")
 }
 
+// Models
 model User {
-    id        String  @id @default(cuid())
-    username  String  @unique
-    firstName String?
-    lastName  String?
-    password  String
-    role      Role    @default(USER)
+    id           String  @id @default(cuid())
+    username     String  @unique
+    firstName    String?
+    lastName     String?
+    password     String
+    role         Role    @default(USER)
+    rootFolderId String
 
     @@map("Users")
 }
 
+model Folder {
+    id           String   @id @default(cuid())
+    name         String
+    ownerId      String
+    parentFolder Folder   @relation("NestedFolder", fields: [parentId], references: [id])
+    parentId     String
+    childFolders Folder[] @relation("NestedFolder")
+    childFiles   File[]
+
+    @@map("Folders")
+}
+
+model File {
+    id           String @id @default(cuid())
+    name         String
+    ownerId      String
+    parentFolder Folder @relation(fields: [parentId], references: [id])
+    parentId     String
+    localFileId  String
+
+    @@map("Files")
+}
+
+// Enums
 enum Role {
     ADMIN
     USER
