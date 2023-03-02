@@ -23,12 +23,18 @@
     "colId": "224539bd-5c1b-42a1-a06c-9aecdf7fc4bf",
     "containerId": "0f4bfb20-b81f-49ee-9955-14f95437a26d",
     "name": "Get Info",
-    "url": "",
+    "url": "http://localhost:8080/api/auth/info",
     "method": "GET",
     "sortNum": 30000,
     "created": "2023-03-02T02:30:51.697Z",
-    "modified": "2023-03-02T02:30:51.697Z",
-    "headers": []
+    "modified": "2023-03-02T02:44:34.756Z",
+    "headers": [],
+    "params": [],
+    "auth": {
+      "type": "bearer",
+      "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImNsZXFpMm82eTAwMDA0djc4bTRuamI4NjIiLCJpYXQiOjE2Nzc3MjQ5MjgsImV4cCI6MTY3NzcyNTgyOH0.sLOr08fMx6SY-rlSEIW4RWL5UwmwWbX3jf_eqcErykQ"
+    },
+    "tests": []
   },
   {
     "_id": "50ab9757-f11f-4581-86de-d5acef3e788c",
