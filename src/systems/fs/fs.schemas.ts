@@ -10,22 +10,23 @@ const fileInfoBase = {
         required_error: "File size is required",
         invalid_type_error: "File size must be a number",
     }),
+    fileExtension: z.string({
+        required_error: "File extension is required",
+        invalid_type_error: "File extension must be a string",
+    }),
 };
 
 const uploadFileSchema = z.object({
     ...fileInfoBase,
-    password: z
-        .string({
-            required_error: "Password is required",
-            invalid_type_error: "Password must be a string",
-        })
-        .min(5, { message: "Must be 5 or more characters long" }),
+    folderPath: z.string({
+        required_error: "Folder path is required",
+        invalid_type_error: "Folder path must be a string",
+    }),
 });
 
 const uploadFileResponseSchema = z.object({
     id: z.string(),
     ...fileInfoBase,
-    rootFolderId: z.string(),
 });
 
 export type UploadFileInput = z.infer<typeof uploadFileSchema>;
