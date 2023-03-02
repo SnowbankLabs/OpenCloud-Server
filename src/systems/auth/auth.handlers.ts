@@ -32,7 +32,7 @@ export async function createUserHandler(
         // Create Root folder with default name "Files"
         const rootFolder = await this.prisma.folder.create({
             data: {
-                name: "Files",
+                folderName: "Files",
                 ownerId: user.id,
                 type: "ROOT",
             },
