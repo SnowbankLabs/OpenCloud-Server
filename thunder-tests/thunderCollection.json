@@ -1,0 +1,17 @@
+[
+  {
+    "_id": "224539bd-5c1b-42a1-a06c-9aecdf7fc4bf",
+    "colName": "Snow Cloud",
+    "created": "2023-03-02T02:30:25.299Z",
+    "sortNum": 10000,
+    "folders": [
+      {
+        "_id": "0f4bfb20-b81f-49ee-9955-14f95437a26d",
+        "name": "Auth",
+        "containerId": "",
+        "created": "2023-03-02T02:30:35.913Z",
+        "sortNum": 10000
+      }
+    ]
+  }
+]
