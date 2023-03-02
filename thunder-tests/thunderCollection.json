@@ -12,6 +12,13 @@
         "created": "2023-03-02T02:30:35.913Z",
         "sortNum": 10000
       }
-    ]
+    ],
+    "settings": {
+      "headers": [],
+      "tests": [],
+      "options": {
+        "baseUrl": "http://localhost:8080/api"
+      }
+    }
   }
 ]
