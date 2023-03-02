@@ -18,18 +18,19 @@ model User {
     lastName     String?
     password     String
     role         Role    @default(USER)
-    rootFolderId String
+    rootFolderId String?
 
     @@map("Users")
 }
 
 model Folder {
-    id           String   @id @default(cuid())
+    id           String     @id @default(cuid())
     name         String
     ownerId      String
-    parentFolder Folder   @relation("NestedFolder", fields: [parentId], references: [id])
-    parentId     String
-    childFolders Folder[] @relation("NestedFolder")
+    type         FolderType @default(STANDARD)
+    parentFolder Folder?    @relation("NestedFolder", fields: [parentId], references: [id])
+    parentId     String?
+    childFolders Folder[]   @relation("NestedFolder")
     childFiles   File[]
 
     @@map("Folders")
@@ -50,4 +51,9 @@ model File {
 enum Role {
     ADMIN
     USER
+}
+
+enum FolderType {
+    ROOT
+    STANDARD
 }
