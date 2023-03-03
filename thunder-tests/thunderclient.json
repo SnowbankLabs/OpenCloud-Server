@@ -54,5 +54,34 @@
       "form": []
     },
     "tests": []
+  },
+  {
+    "_id": "4a9cef53-94c5-4e99-b813-05e600d75ed9",
+    "colId": "224539bd-5c1b-42a1-a06c-9aecdf7fc4bf",
+    "containerId": "2358960c-cc91-46c9-9b5e-aed0745367b4",
+    "name": "Upload File",
+    "url": "http://localhost:8080/api/files/upload",
+    "method": "POST",
+    "sortNum": 40000,
+    "created": "2023-03-03T21:43:06.159Z",
+    "modified": "2023-03-03T21:55:02.172Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "formdata",
+      "raw": "",
+      "form": [],
+      "files": [
+        {
+          "name": "file",
+          "value": "c:\\Users\\Michael Wang\\Downloads\\F1_22_lhBVBMoShl.jpg"
+        }
+      ]
+    },
+    "auth": {
+      "type": "bearer",
+      "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImNsZXQyY2N3ZzAwMDA0dmw4N2I0dDMxdGciLCJpYXQiOjE2Nzc4Nzk4NTgsImV4cCI6MTY3Nzg4MDc1OH0.D3G8HIRzda8KBkiFB0d6ItEX-w-xMSDA4YWZjTwCiiY"
+    },
+    "tests": []
   }
 ]

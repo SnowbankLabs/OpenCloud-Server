@@ -6,6 +6,7 @@ import Fastify from "fastify";
 
 import prismaPlugin from "@utils/prisma";
 import authenticationPlugin from "@utils/authentication";
+import fastifyMultipart from "@fastify/multipart";
 import authRouter from "@systems/auth/auth.routes";
 import { authSchemas } from "@systems/auth/auth.schemas";
 import fileSystemRouter from "@systems/fs/fs.routes";
@@ -19,6 +20,7 @@ const server = Fastify({
 // Register Utility Plugins
 void server.register(prismaPlugin);
 void server.register(authenticationPlugin);
+void server.register(fastifyMultipart);
 
 // Register Route Schemas
 for (const schema of [...authSchemas, ...fsSchemas]) {
