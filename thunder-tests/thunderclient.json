@@ -64,13 +64,18 @@
     "method": "POST",
     "sortNum": 40000,
     "created": "2023-03-03T21:43:06.159Z",
-    "modified": "2023-03-04T06:18:56.096Z",
+    "modified": "2023-03-04T06:34:06.206Z",
     "headers": [],
     "params": [],
     "body": {
       "type": "formdata",
       "raw": "",
-      "form": [],
+      "form": [
+        {
+          "name": "parentFolderId",
+          "value": "cletkpwln00024v5ok92md1cd"
+        }
+      ],
       "files": [
         {
           "name": "file",
@@ -80,7 +85,7 @@
     },
     "auth": {
       "type": "bearer",
-      "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImNsZXRrcHdqajAwMDA0djVvY2ZjeGttMWMiLCJpYXQiOjE2Nzc5MTA3MjMsImV4cCI6MTY3NzkxMTYyM30.9cRSydfZnpiwDLTiwnimhH0_H8-Ub1Xvgc3Zc7dQmPY"
+      "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImNsZXRrcHdqajAwMDA0djVvY2ZjeGttMWMiLCJpYXQiOjE2Nzc5MTE2MzksImV4cCI6MTY3NzkxMjUzOX0.VCMFjmAZBDMFw5ijeDCjuAVvG_majIJ69Vt_IvAcJFI"
     },
     "tests": []
   }
