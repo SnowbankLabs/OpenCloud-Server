@@ -25,7 +25,7 @@ model User {
 
 model Folder {
     id           String     @id @default(cuid())
-    folderName   String     @map("name")
+    folderName   String
     ownerId      String
     type         FolderType @default(STANDARD)
     parentFolder Folder?    @relation("NestedFolder", fields: [parentId], references: [id])
@@ -37,14 +37,14 @@ model Folder {
 }
 
 model File {
-    id            String @id @default(cuid())
-    fileName      String @map("name")
-    fileSize      Int
-    fileExtension String
-    ownerId       String
-    parentFolder  Folder @relation(fields: [parentId], references: [id])
-    parentId      String
-    localFileId   String
+    id           String @id @default(cuid())
+    fileName     String
+    fileSize     Int?
+    fileType     String
+    ownerId      String
+    parentFolder Folder @relation(fields: [parentId], references: [id])
+    parentId     String
+    localFileId  String @default(cuid())
 
     @@map("Files")
 }
