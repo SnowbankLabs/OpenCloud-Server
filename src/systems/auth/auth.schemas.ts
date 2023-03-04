@@ -22,7 +22,7 @@ const createUserSchema = z.object({
         .min(5, { message: "Must be 5 or more characters long" }),
 });
 
-const createUserResponseSchema = z.object({
+const userInfoResponseSchema = z.object({
     id: z.string(),
     ...userBase,
     role: z.enum(["ADMIN", "USER"]),
@@ -40,20 +40,29 @@ const loginSchema = z.object({
     }),
 });
 
-const loginResponseSchema = z.object({
+const refreshSchema = z.object({
+    refreshToken: z.string({
+        required_error: "Refresh token is required",
+        invalid_type_error: "Refresh token must be a string",
+    }),
+});
+
+const credentialsResponseSchema = z.object({
     accessToken: z.string(),
-    // refreshToken: z.string(),
+    refreshToken: z.string(),
 });
 
 export type CreateUserInput = z.infer<typeof createUserSchema>;
 export type LoginInput = z.infer<typeof loginSchema>;
+export type RefreshInput = z.infer<typeof refreshSchema>;
 
 export const { schemas: authSchemas, $ref } = buildJsonSchemas(
     {
         createUserSchema,
-        createUserResponseSchema,
+        userInfoResponseSchema,
         loginSchema,
-        loginResponseSchema,
+        refreshSchema,
+        credentialsResponseSchema,
     },
     { $id: "Auth" },
 );
