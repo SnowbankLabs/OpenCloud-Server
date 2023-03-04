@@ -20,7 +20,11 @@ const server = Fastify({
 // Register Utility Plugins
 void server.register(prismaPlugin);
 void server.register(authenticationPlugin);
-void server.register(fastifyMultipart);
+void server.register(fastifyMultipart, {
+    limits: {
+        fileSize: 10 * 1024 * 1024 * 1024,
+    },
+});
 
 // Register Route Schemas
 for (const schema of [...authSchemas, ...fsSchemas]) {
