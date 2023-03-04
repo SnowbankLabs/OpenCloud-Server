@@ -17,7 +17,7 @@ export async function uploadFileHandler(
     const fileDataMulti = request.files();
 
     if (!fileDataMulti) {
-        return reply.code(400).send();
+        return reply.code(400).send({ status: "fail", error: "No files provided" });
     }
 
     for await (const fileData of fileDataMulti) {
@@ -45,5 +45,5 @@ export async function uploadFileHandler(
         );
     }
 
-    return reply.code(200).send();
+    return reply.code(200).send({ status: "success" });
 }
