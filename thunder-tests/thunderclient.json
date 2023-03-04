@@ -60,22 +60,23 @@
     "colId": "224539bd-5c1b-42a1-a06c-9aecdf7fc4bf",
     "containerId": "2358960c-cc91-46c9-9b5e-aed0745367b4",
     "name": "Upload File",
-    "url": "http://localhost:8080/api/files/upload",
+    "url": "http://localhost:8080/api/files/upload?parentFolderId=cletldi2700024v0kjhvf31of",
     "method": "POST",
     "sortNum": 40000,
     "created": "2023-03-03T21:43:06.159Z",
-    "modified": "2023-03-04T06:34:06.206Z",
+    "modified": "2023-03-04T06:53:23.003Z",
     "headers": [],
-    "params": [],
+    "params": [
+      {
+        "name": "parentFolderId",
+        "value": "cletldi2700024v0kjhvf31of",
+        "isPath": false
+      }
+    ],
     "body": {
       "type": "formdata",
       "raw": "",
-      "form": [
-        {
-          "name": "parentFolderId",
-          "value": "cletkpwln00024v5ok92md1cd"
-        }
-      ],
+      "form": [],
       "files": [
         {
           "name": "file",
@@ -85,7 +86,7 @@
     },
     "auth": {
       "type": "bearer",
-      "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImNsZXRrcHdqajAwMDA0djVvY2ZjeGttMWMiLCJpYXQiOjE2Nzc5MTE2MzksImV4cCI6MTY3NzkxMjUzOX0.VCMFjmAZBDMFw5ijeDCjuAVvG_majIJ69Vt_IvAcJFI"
+      "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImNsZXRsZGkwZjAwMDA0djBrM2lpeG9lYTEiLCJpYXQiOjE2Nzc5MTI3OTgsImV4cCI6MTY3NzkxMzY5OH0.vCkcLqyg-vD_3Tc_DH2MTLzR4y-9kqUd83-JZYpB-rg"
     },
     "tests": []
   }
