@@ -3,23 +3,36 @@ import fs from "fs";
 import util from "util";
 import { pipeline } from "stream";
 
-// import type { UploadFileInput } from "./fs.schemas";
+import type { UploadFileQuerystring } from "./fs.schemas";
 
 const pump = util.promisify(pipeline);
 
 export async function uploadFileHandler(
     this: FastifyInstance,
-    // request: FastifyRequest<{ Body: UploadFileInput }>,
-    request: FastifyRequest,
+    request: FastifyRequest<{ Querystring: UploadFileQuerystring }>,
     reply: FastifyReply,
 ) {
-    const data = await request.file();
+    const parentFolderId = request.query.parentFolderId;
 
-    if (!data) {
+    const fileDataMulti = request.files();
+
+    if (!fileDataMulti) {
         return reply.code(400).send();
     }
 
-    await pump(data.file, fs.createWriteStream("./FileStore/" + data.filename));
+    for await (const fileData of fileDataMulti) {
+        const fileDetails = await this.prisma.file.create({
+            data: {
+                fileName: fileData.filename,
+                fileType: fileData.mimetype,
+                ownerId: request.user.id,
+                parentFolder: {
+                    connect: { id: parentFolderId },
+                },
+            },
+        });
+        await pump(fileData.file, fs.createWriteStream("./FileStore/" + fileDetails.localFileId));
+    }
 
     return reply.code(200).send();
 }

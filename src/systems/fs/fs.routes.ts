@@ -9,7 +9,7 @@ async function fileSystemRouter(server: FastifyInstance) {
         url: "/upload",
         onRequest: [server.authenticate],
         schema: {
-            // body: $ref("uploadFileSchema"),
+            querystring: $ref("uploadFileQuerySchema"),
             response: { 201: $ref("uploadFileResponseSchema") },
         },
         handler: uploadFileHandler,
