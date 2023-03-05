@@ -45,5 +45,5 @@ export async function uploadFileHandler(
         );
     }
 
-    return reply.code(200).send({ status: "success" });
+    return reply.code(201).send({ status: "success" });
 }
