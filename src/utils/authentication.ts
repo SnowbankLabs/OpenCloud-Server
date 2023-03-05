@@ -14,10 +14,12 @@ declare module "fastify" {
 
 declare module "@fastify/jwt" {
     interface FastifyJWT {
+        payload: {
+            id: string;
+            type: "AccessToken" | "RefreshToken";
+        };
         user: {
             id: string;
-            iat: number;
-            exp: number;
         };
     }
 }

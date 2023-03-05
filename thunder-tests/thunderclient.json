@@ -27,12 +27,12 @@
     "method": "GET",
     "sortNum": 30000,
     "created": "2023-03-02T02:30:51.697Z",
-    "modified": "2023-03-02T02:44:34.756Z",
+    "modified": "2023-03-05T00:47:31.207Z",
     "headers": [],
     "params": [],
     "auth": {
       "type": "bearer",
-      "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImNsZXFpMm82eTAwMDA0djc4bTRuamI4NjIiLCJpYXQiOjE2Nzc3MjQ5MjgsImV4cCI6MTY3NzcyNTgyOH0.sLOr08fMx6SY-rlSEIW4RWL5UwmwWbX3jf_eqcErykQ"
+      "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImNsZXRsZGkwZjAwMDA0djBrM2lpeG9lYTEiLCJ0eXBlIjoiQWNjZXNzVG9rZW4iLCJpYXQiOjE2Nzc5NzcyMzYsImV4cCI6MTY3Nzk3ODEzNn0.EZF-faPQ5Ml5ZUtFwrOhZVMRyhR2RXSsBbnZhv6V93A"
     },
     "tests": []
   },
@@ -87,6 +87,25 @@
     "auth": {
       "type": "bearer",
       "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImNsZXRsZGkwZjAwMDA0djBrM2lpeG9lYTEiLCJpYXQiOjE2Nzc5MTI3OTgsImV4cCI6MTY3NzkxMzY5OH0.vCkcLqyg-vD_3Tc_DH2MTLzR4y-9kqUd83-JZYpB-rg"
+    },
+    "tests": []
+  },
+  {
+    "_id": "4aca3b08-14d8-4604-8458-8e0484cb7e35",
+    "colId": "224539bd-5c1b-42a1-a06c-9aecdf7fc4bf",
+    "containerId": "0f4bfb20-b81f-49ee-9955-14f95437a26d",
+    "name": "Refresh Credentials",
+    "url": "http://localhost:8080/api/auth/refresh",
+    "method": "POST",
+    "sortNum": 25000,
+    "created": "2023-03-04T23:55:21.819Z",
+    "modified": "2023-03-05T00:47:43.805Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n  \"refreshToken\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImNsZXVvYm1hbTAwMDA0djd3MTQxMjhjbW0iLCJ0eXBlIjoiUmVmcmVzaFRva2VuIiwiaWF0IjoxNjc3OTc3MjM2LCJleHAiOjE2Nzg1ODIwMzZ9.n_rixIuzCZlnt-HGhXNkiFAk2DhbkYDtrDHm6_oArSI\"\n}",
+      "form": []
     },
     "tests": []
   }

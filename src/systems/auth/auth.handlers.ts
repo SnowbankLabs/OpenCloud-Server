@@ -1,7 +1,8 @@
 import type { FastifyInstance, FastifyRequest, FastifyReply } from "fastify";
+import type { FastifyJWT } from "@fastify/jwt";
 import * as argon2 from "argon2";
 
-import type { CreateUserInput, LoginInput } from "./auth.schemas";
+import type { CreateUserInput, LoginInput, RefreshInput } from "./auth.schemas";
 
 export async function createUserHandler(
     this: FastifyInstance,
@@ -70,12 +71,77 @@ export async function loginHandler(
     const passwordValid = await argon2.verify(user.password, body.password);
 
     if (passwordValid) {
+        // Create refresh token in db
+        const refreshToken = await this.prisma.refreshToken.create({
+            data: {
+                user: {
+                    connect: { id: user.id },
+                },
+            },
+        });
+
+        // Return access credentials
         return {
-            accessToken: this.jwt.sign({ id: user.id }, { expiresIn: "15m" }),
+            accessToken: this.jwt.sign({ id: user.id, type: "AccessToken" }, { expiresIn: "15m" }),
+            refreshToken: this.jwt.sign({ id: refreshToken.id, type: "RefreshToken" }, { expiresIn: "7d" }),
         };
     }
 
     return reply.code(401).send({ message: "Invalid username or password" });
+}
+
+export async function refreshHandler(
+    this: FastifyInstance,
+    request: FastifyRequest<{ Body: RefreshInput }>,
+    reply: FastifyReply,
+) {
+    const tokenPayload: FastifyJWT["payload"] = this.jwt.verify(request.body.refreshToken);
+
+    // Get current token from db and verify that it is valid
+    const currentRefreshToken = await this.prisma.refreshToken.findUnique({
+        where: { id: tokenPayload.id },
+    });
+
+    // No token found in db with id from token payload
+    if (!currentRefreshToken) {
+        return reply.code(401).send({ message: "Invalid refresh token" });
+    }
+
+    if (!currentRefreshToken.valid) {
+        // User refresh token potentially stolen, invalidate all of user's refresh tokens
+        await this.prisma.refreshToken.updateMany({
+            where: {
+                userId: currentRefreshToken.userId,
+            },
+            data: {
+                valid: false,
+            },
+        });
+
+        return reply.code(401).send({ message: "Invalid refresh token" });
+    }
+
+    // Invalidate current refresh token
+    await this.prisma.refreshToken.update({
+        where: { id: tokenPayload.id },
+        data: { valid: false },
+    });
+
+    const userId = currentRefreshToken.userId;
+
+    // Create new refresh token in db
+    const newRefreshToken = await this.prisma.refreshToken.create({
+        data: {
+            user: {
+                connect: { id: userId },
+            },
+        },
+    });
+
+    return reply.code(200).send({
+        accessToken: this.jwt.sign({ id: userId, type: "AccessToken" }, { expiresIn: "15m" }),
+        refreshToken: this.jwt.sign({ id: newRefreshToken.id, type: "RefreshToken" }, { expiresIn: "7d" }),
+    });
 }
 
 export async function infoHandler(this: FastifyInstance, request: FastifyRequest, reply: FastifyReply) {
