@@ -3,6 +3,7 @@ lockfileVersion: 5.4
 specifiers:
   '@fastify/jwt': ^6.6.0
   '@fastify/multipart': ^7.4.1
+  '@fastify/static': ^6.9.0
   '@ianvs/prettier-plugin-sort-imports': ^3.7.1
   '@prisma/client': ^4.11.0
   '@types/node': ^18.14.4
@@ -29,6 +30,7 @@ specifiers:
 dependencies:
   '@fastify/jwt': 6.6.0
   '@fastify/multipart': 7.4.1
+  '@fastify/static': 6.9.0
   '@prisma/client': 4.11.0_prisma@4.11.0
   argon2: 0.30.3
   dotenv: 16.0.3

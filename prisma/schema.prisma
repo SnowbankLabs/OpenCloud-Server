@@ -55,7 +55,6 @@ model File {
     ownerId      String
     parentFolder Folder @relation(fields: [parentId], references: [id])
     parentId     String
-    localFileId  String @default(cuid())
 
     @@map("Files")
 }

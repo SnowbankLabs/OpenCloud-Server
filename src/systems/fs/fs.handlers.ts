@@ -3,7 +3,7 @@ import fs from "fs";
 import util from "util";
 import { pipeline } from "stream";
 
-import type { UploadFileQuerystring } from "./fs.schemas";
+import type { UploadFileQuerystring, GetFileQuerystring } from "./fs.schemas";
 
 const pump = util.promisify(pipeline);
 
@@ -39,11 +39,24 @@ export async function uploadFileHandler(
         }
 
         // Save file to appropriate FileStore
-        await pump(
-            fileData.file,
-            fs.createWriteStream("./FileStore/" + request.user.id + "/" + fileDetails.localFileId),
-        );
+        await pump(fileData.file, fs.createWriteStream("./FileStore/" + request.user.id + "/" + fileDetails.id));
     }
 
     return reply.code(201).send({ status: "success" });
+}
+
+export async function getFileHandler(
+    this: FastifyInstance,
+    request: FastifyRequest<{ Querystring: GetFileQuerystring }>,
+    reply: FastifyReply,
+) {
+    const fileData = await this.prisma.file.findUnique({
+        where: { id: request.query.fileId },
+    });
+
+    if (!fileData) {
+        return reply.code(404).send({ message: "File not found" });
+    }
+
+    return reply.sendFile(fileData.ownerId + "/" + fileData.id);
 }

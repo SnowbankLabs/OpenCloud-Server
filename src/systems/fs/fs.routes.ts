@@ -1,7 +1,7 @@
 import type { FastifyInstance } from "fastify";
 
 import { $ref } from "./fs.schemas";
-import { uploadFileHandler } from "./fs.handlers";
+import { uploadFileHandler, getFileHandler } from "./fs.handlers";
 
 async function fileSystemRouter(server: FastifyInstance) {
     server.route({
@@ -14,6 +14,16 @@ async function fileSystemRouter(server: FastifyInstance) {
         },
         handler: uploadFileHandler,
     });
+
+    server.route({
+        method: "GET",
+        url: "/get",
+        // onRequest: [server.authenticate],
+        schema: {
+            querystring: $ref("getFileQuerySchema"),
+        },
+        handler: getFileHandler,
+    })
 }
 
 export default fileSystemRouter;

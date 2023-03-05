@@ -3,10 +3,14 @@ import * as dotenv from "dotenv";
 dotenv.config();
 
 import Fastify from "fastify";
+import type { FastifyRequest, FastifyReply } from "fastify";
 
 import prismaPlugin from "@utils/prisma";
 import authenticationPlugin from "@utils/authentication";
-import fastifyMultipart from "@fastify/multipart";
+import FastifyMultipart from "@fastify/multipart";
+import FastifyStatic from "@fastify/static";
+import path from "path";
+
 import authRouter from "@systems/auth/auth.routes";
 import { authSchemas } from "@systems/auth/auth.schemas";
 import fileSystemRouter from "@systems/fs/fs.routes";
@@ -20,10 +24,14 @@ const server = Fastify({
 // Register Utility Plugins
 void server.register(prismaPlugin);
 void server.register(authenticationPlugin);
-void server.register(fastifyMultipart, {
+void server.register(FastifyMultipart, {
     limits: {
         fileSize: 10 * 1024 * 1024 * 1024,
     },
+});
+void server.register(FastifyStatic, {
+    root: path.join(__dirname, "../", "FileStore"),
+    prefix: "/FileStore/",
 });
 
 // Register Route Schemas
