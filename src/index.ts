@@ -3,7 +3,6 @@ import * as dotenv from "dotenv";
 dotenv.config();
 
 import Fastify from "fastify";
-import type { FastifyRequest, FastifyReply } from "fastify";
 
 import prismaPlugin from "@utils/prisma";
 import authenticationPlugin from "@utils/authentication";
