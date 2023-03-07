@@ -14,35 +14,33 @@ export async function uploadFileHandler(
 ) {
     const parentFolderId = request.query.parentFolderId;
 
-    const fileDataMulti = request.files();
+    const fileData = await request.file();
 
-    if (!fileDataMulti) {
-        return reply.code(400).send({ status: "fail", error: "No files provided" });
+    if (!fileData) {
+        return reply.code(400).send({ status: "fail", error: "No file provided" });
     }
 
-    for await (const fileData of fileDataMulti) {
-        // Create file in db
-        const fileDetails = await this.prisma.file.create({
-            data: {
-                fileName: fileData.filename,
-                fileType: fileData.mimetype,
-                ownerId: request.user.id,
-                parentFolder: {
-                    connect: { id: parentFolderId },
-                },
+    // Create file in db
+    const fileDetails = await this.prisma.file.create({
+        data: {
+            fileName: fileData.filename,
+            fileType: fileData.mimetype,
+            ownerId: request.user.id,
+            parentFolder: {
+                connect: { id: parentFolderId },
             },
-        });
+        },
+    });
 
-        // Verify correct folder structure exists, otherwise create it
-        if (!fs.existsSync("./FileStore/" + request.user.id)) {
-            fs.mkdirSync("./FileStore/" + request.user.id, { recursive: true });
-        }
-
-        // Save file to appropriate FileStore
-        await pump(fileData.file, fs.createWriteStream("./FileStore/" + request.user.id + "/" + fileDetails.id));
+    // Verify correct folder structure exists, otherwise create it
+    if (!fs.existsSync("./FileStore/" + request.user.id)) {
+        fs.mkdirSync("./FileStore/" + request.user.id, { recursive: true });
     }
 
-    return reply.code(201).send({ status: "success" });
+    // Save file to appropriate FileStore
+    await pump(fileData.file, fs.createWriteStream("./FileStore/" + request.user.id + "/" + fileDetails.id));
+
+    return reply.code(201).send({ status: "success", id: fileDetails.id });
 }
 
 export async function getFileHandler(
