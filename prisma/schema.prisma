@@ -20,6 +20,7 @@ model User {
     role          Role           @default(USER)
     rootFolderId  String?
     refreshTokens RefreshToken[]
+    createdAt     DateTime       @default(now())
 
     @@map("Users")
 }
@@ -43,6 +44,7 @@ model Folder {
     parentId     String?
     childFolders Folder[]   @relation("NestedFolder")
     childFiles   File[]
+    createdAt    DateTime   @default(now())
 
     @@map("Folders")
 }
@@ -56,6 +58,7 @@ model File {
     fileAccess   FileAccess @default(PRIVATE)
     parentFolder Folder     @relation(fields: [parentId], references: [id])
     parentId     String
+    createdAt    DateTime   @default(now())
 
     @@map("Files")
 }
