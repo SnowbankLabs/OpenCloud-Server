@@ -18,7 +18,7 @@ declare module "@fastify/jwt" {
     interface FastifyJWT {
         payload: {
             id: string;
-            type: "AccessToken" | "RefreshToken";
+            type: "AccessToken" | "RefreshToken" | "UploadToken";
         };
         user: {
             id: string;

@@ -2,7 +2,7 @@ import type { FastifyInstance, FastifyRequest, FastifyReply } from "fastify";
 import type { FastifyJWT } from "@fastify/jwt";
 import * as argon2 from "argon2";
 
-import type { CreateUserInput, LoginInput, RefreshInput } from "./auth.schemas";
+import type { CreateUserInput, LoginInput, RefreshInput, CreateUploadTokenInput } from "./auth.schemas";
 
 export async function createUserHandler(
     this: FastifyInstance,
@@ -152,4 +152,31 @@ export async function infoHandler(this: FastifyInstance, request: FastifyRequest
     }
 
     return reply.code(200).send(user);
+}
+
+export async function createUploadTokenHandler(
+    this: FastifyInstance,
+    request: FastifyRequest<{ Body: CreateUploadTokenInput }>,
+    reply: FastifyReply,
+) {
+    const user = await this.prisma.user.findUnique({ where: { id: request.user.id } });
+
+    if (!user) {
+        return reply.code(500).send({ message: "Something went wrong. Please try again" });
+    }
+
+    const { description, folderId, fileAccess } = request.body;
+
+    const uploadToken = await this.prisma.uploadToken.create({
+        data: {
+            user: {
+                connect: { id: user.id },
+            },
+            description: description != undefined ? description : null,
+            folderId: folderId,
+            fileAccess: fileAccess,
+        },
+    });
+
+    return reply.code(200).send({ uploadToken: this.jwt.sign({ id: uploadToken.id, type: "UploadToken" }) });
 }

@@ -52,9 +52,23 @@ const credentialsResponseSchema = z.object({
     refreshToken: z.string(),
 });
 
+const createUploadTokenSchema = z.object({
+    description: z.string().optional(),
+    folderId: z.string({
+        required_error: "Parent folder ID is required",
+        invalid_type_error: "Parent folder ID must be a string",
+    }),
+    fileAccess: z.enum(["PRIVATE", "PROTECTED", "PUBLIC"]),
+});
+
+const createUploadTokenResponseSchema = z.object({
+    uploadToken: z.string(),
+});
+
 export type CreateUserInput = z.infer<typeof createUserSchema>;
 export type LoginInput = z.infer<typeof loginSchema>;
 export type RefreshInput = z.infer<typeof refreshSchema>;
+export type CreateUploadTokenInput = z.infer<typeof createUploadTokenSchema>;
 
 export const { schemas: authSchemas, $ref } = buildJsonSchemas(
     {
@@ -63,6 +77,8 @@ export const { schemas: authSchemas, $ref } = buildJsonSchemas(
         loginSchema,
         refreshSchema,
         credentialsResponseSchema,
+        createUploadTokenSchema,
+        createUploadTokenResponseSchema,
     },
     { $id: "Auth" },
 );

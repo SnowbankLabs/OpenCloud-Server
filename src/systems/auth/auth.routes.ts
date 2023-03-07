@@ -1,7 +1,13 @@
 import type { FastifyInstance } from "fastify";
 
 import { $ref } from "./auth.schemas";
-import { createUserHandler, loginHandler, refreshHandler, infoHandler } from "./auth.handlers";
+import {
+    createUserHandler,
+    loginHandler,
+    refreshHandler,
+    infoHandler,
+    createUploadTokenHandler,
+} from "./auth.handlers";
 
 async function authRouter(server: FastifyInstance) {
     server.route({
@@ -32,7 +38,7 @@ async function authRouter(server: FastifyInstance) {
             response: { 200: $ref("credentialsResponseSchema") },
         },
         handler: refreshHandler,
-    })
+    });
 
     server.route({
         method: "GET",
@@ -42,6 +48,17 @@ async function authRouter(server: FastifyInstance) {
             response: { 200: $ref("userInfoResponseSchema") },
         },
         handler: infoHandler,
+    });
+
+    server.route({
+        method: "POST",
+        url: "/create-upload-token",
+        onRequest: [server.authenticate],
+        schema: {
+            body: $ref("createUploadTokenSchema"),
+            response: { 200: $ref("createUploadTokenResponseSchema") },
+        },
+        handler: createUploadTokenHandler,
     });
 }
 
