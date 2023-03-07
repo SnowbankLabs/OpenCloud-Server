@@ -9,6 +9,8 @@ declare module "fastify" {
     interface FastifyInstance {
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         authenticate: any;
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        optionalAuthenticate: any
     }
 }
 
@@ -33,8 +35,20 @@ const authenticationPlugin: FastifyPluginAsync = fp(async (server) => {
     server.decorate("authenticate", async function (request: FastifyRequest, reply: FastifyReply) {
         try {
             await request.jwtVerify();
+            request.authenticated = true;
         } catch (err) {
             void reply.send(err);
+            request.authenticated = false;
+        }
+    });
+
+    // Attempts to verify user but does not stop if verification fails (allows routes with optional authentication)
+    server.decorate("optionalAuthenticate", async function (request: FastifyRequest) {
+        try {
+            await request.jwtVerify();
+            request.authenticated = true;
+        } catch (err) {
+            request.authenticated = false;
         }
     });
 });

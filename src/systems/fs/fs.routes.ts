@@ -18,7 +18,7 @@ async function fileSystemRouter(server: FastifyInstance) {
     server.route({
         method: "GET",
         url: "/get",
-        // onRequest: [server.authenticate],
+        onRequest: [server.optionalAuthenticate],
         schema: {
             querystring: $ref("getFileQuerySchema"),
         },

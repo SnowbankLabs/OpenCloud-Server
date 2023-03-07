@@ -15,6 +15,13 @@ import { authSchemas } from "@systems/auth/auth.schemas";
 import fileSystemRouter from "@systems/fs/fs.routes";
 import { fsSchemas } from "@systems/fs/fs.schemas";
 
+// Fastify Types
+declare module 'fastify' {
+    interface FastifyRequest {
+        authenticated: boolean;
+    }
+}
+
 // Initialize Fastify Instance
 const server = Fastify({
     logger: true,
