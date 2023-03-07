@@ -56,5 +56,15 @@ export async function getFileHandler(
         return reply.code(404).send({ message: "File not found" });
     }
 
+    if (fileData.fileAccess != "PUBLIC") {
+        if (request.authenticated == false) {
+            return reply.code(401).send({ error: "Unauthorized", message: "You do not have access to this file" });
+        }
+
+        if (request.user.id != fileData.ownerId) {
+            return reply.code(403).send({ error: "Forbidden", message: "You do not have access to this file" });
+        }
+    }
+
     return reply.sendFile(fileData.ownerId + "/" + fileData.id);
 }
