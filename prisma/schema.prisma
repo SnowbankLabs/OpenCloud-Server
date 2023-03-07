@@ -73,6 +73,6 @@ enum FolderType {
 
 enum FileAccess {
     PRIVATE
-    SHARED
+    PROTECTED
     PUBLIC
 }
