@@ -23,7 +23,7 @@ async function fileSystemRouter(server: FastifyInstance) {
             querystring: $ref("getFileQuerySchema"),
         },
         handler: getFileHandler,
-    })
+    });
 }
 
 export default fileSystemRouter;

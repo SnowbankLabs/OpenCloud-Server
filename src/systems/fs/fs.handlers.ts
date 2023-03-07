@@ -66,5 +66,8 @@ export async function getFileHandler(
         }
     }
 
+    void reply.header("Content-Type", fileData.fileType);
+    void reply.header("Content-Disposition", `inline; filename="${fileData.fileName}"`);
+
     return reply.sendFile(fileData.ownerId + "/" + fileData.id);
 }
