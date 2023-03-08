@@ -8,7 +8,7 @@
         "db:generate": "prisma generate",
         "db:migrate": "prisma migrate dev",
         "db:validate": "prisma validate",
-        "build": "rimraf dist && tsc --outDir dist && tsc-alias",
+        "build": "rimraf dist && prisma generate && tsc --outDir dist && tsc-alias",
         "clean": "rimraf dist"
     },
     "nodemonConfig": {

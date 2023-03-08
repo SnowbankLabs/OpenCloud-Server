@@ -1,0 +1,11 @@
+.git
+.gitignore
+node_modules
+Dockerfile
+docker-compose.yaml
+prettier.config.cjs
+.eslintrc.cjs
+.env_example
+thunder-tests
+dist
+README.md

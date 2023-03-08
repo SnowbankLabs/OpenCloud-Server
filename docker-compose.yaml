@@ -1,0 +1,13 @@
+services:
+    OpenCloud-Server:
+        image: opencloud-server
+        environment:
+            - NODE_ENV=${NODE_ENV}
+            - AUTH_SECRET=${AUTH_SECRET}
+            - DATABASE_URL=${DATABASE_URL}
+        build:
+            context: .
+            dockerfile: Dockerfile
+            target: deploy
+        ports:
+            - 8080:8080
