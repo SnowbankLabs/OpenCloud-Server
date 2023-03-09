@@ -12,31 +12,27 @@ datasource db {
 
 // Models
 model User {
-    id                 String         @id @default(cuid())
-    username           String         @unique
-    firstName          String?
-    lastName           String?
-    password           String
-    role               Role           @default(USER)
-    rootFolderId       String?
-    refreshTokens      RefreshToken[]
-    uploadTokens       UploadToken[]
-    accessControlRules AccessRule[]
-    createdAt          DateTime       @default(now())
+    id                   String         @id @default(cuid())
+    username             String         @unique
+    firstName            String?
+    lastName             String?
+    password             String
+    role                 Role           @default(USER)
+    rootFolderId         String?
+    refreshTokens        RefreshToken[]
+    uploadTokens         UploadToken[]
+    accessControlRuleIds String[]
+    createdAt            DateTime       @default(now())
 
     @@map("Users")
 }
 
 model AccessRule {
-    id            String           @id @default(cuid())
-    name          String
-    type          AllowDisallow
-    method        AccessRuleMethod
-    match         String
-    User          User?            @relation(fields: [userId], references: [id])
-    userId        String?
-    UploadToken   UploadToken?     @relation(fields: [uploadTokenId], references: [id])
-    uploadTokenId String?
+    id     String           @id @default(cuid())
+    name   String
+    type   AllowDisallow
+    method AccessRuleMethod
+    match  String
 
     @@map("AccessRules")
 }
@@ -52,14 +48,14 @@ model RefreshToken {
 }
 
 model UploadToken {
-    id                 String       @id @default(cuid())
-    user               User         @relation(fields: [userId], references: [id])
-    userId             String
-    description        String?
-    folderId           String
-    fileAccess         FileAccess   @default(PRIVATE)
-    createdAt          DateTime     @default(now())
-    accessControlRules AccessRule[]
+    id                   String     @id @default(cuid())
+    user                 User       @relation(fields: [userId], references: [id])
+    userId               String
+    description          String?
+    folderId             String
+    fileAccess           FileAccess
+    createdAt            DateTime   @default(now())
+    accessControlRuleIds String[]
 
     @@map("UploadTokens")
 }

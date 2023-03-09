@@ -3,12 +3,13 @@ import * as dotenv from "dotenv";
 dotenv.config();
 
 import Fastify from "fastify";
-
-import prismaPlugin from "@utils/prisma";
-import authenticationPlugin from "@utils/authentication";
 import FastifyMultipart from "@fastify/multipart";
 import FastifyStatic from "@fastify/static";
 import path from "path";
+
+import prismaPlugin from "@utils/prisma";
+import authenticationPlugin from "@utils/authentication";
+import accessControlPlugin from "@utils/access-control";
 
 import { env } from "@env/server";
 import authRouter from "@systems/auth/auth.routes";
@@ -31,6 +32,7 @@ const server = Fastify({
 // Register Utility Plugins
 void server.register(prismaPlugin);
 void server.register(authenticationPlugin);
+void server.register(accessControlPlugin);
 void server.register(FastifyMultipart, {
     limits: {
         fileSize: 10 * 1024 * 1024 * 1024,
