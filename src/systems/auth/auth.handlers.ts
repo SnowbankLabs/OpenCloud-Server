@@ -2,7 +2,13 @@ import type { FastifyInstance, FastifyRequest, FastifyReply } from "fastify";
 import type { FastifyJWT } from "@fastify/jwt";
 import * as argon2 from "argon2";
 
-import type { CreateUserInput, LoginInput, RefreshInput, CreateUploadTokenInput } from "./auth.schemas";
+import type {
+    CreateUserInput,
+    LoginInput,
+    RefreshInput,
+    CreateAccessRuleInput,
+    CreateUploadTokenInput,
+} from "./auth.schemas";
 
 export async function createUserHandler(
     this: FastifyInstance,
@@ -152,6 +158,25 @@ export async function infoHandler(this: FastifyInstance, request: FastifyRequest
     }
 
     return reply.code(200).send(user);
+}
+
+export async function createAccessRuleHandler(
+    this: FastifyInstance,
+    request: FastifyRequest<{ Body: CreateAccessRuleInput }>,
+    reply: FastifyReply,
+) {
+    const { name, type, method, match } = request.body;
+
+    await this.prisma.accessRule.create({
+        data: {
+            name: name,
+            type: type,
+            method: method,
+            match: match,
+        },
+    });
+
+    return reply.code(200).send({ status: "success", message: "Access Rule created" });
 }
 
 export async function createUploadTokenHandler(

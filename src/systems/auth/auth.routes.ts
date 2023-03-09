@@ -7,6 +7,7 @@ import {
     refreshHandler,
     infoHandler,
     createUploadTokenHandler,
+    createAccessRuleHandler,
 } from "./auth.handlers";
 
 async function authRouter(server: FastifyInstance) {
@@ -48,6 +49,16 @@ async function authRouter(server: FastifyInstance) {
             response: { 200: $ref("userInfoResponseSchema") },
         },
         handler: infoHandler,
+    });
+
+    server.route({
+        method: "POST",
+        url: "/create-access-rule",
+        onRequest: [server.authenticate],
+        schema: {
+            body: $ref("createAccessRuleSchema"),
+        },
+        handler: createAccessRuleHandler,
     });
 
     server.route({
