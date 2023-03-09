@@ -185,9 +185,16 @@ export async function createUploadTokenHandler(
     reply: FastifyReply,
 ) {
     const user = await this.prisma.user.findUnique({ where: { id: request.user.id } });
+    const folder = await this.prisma.folder.findUnique({ where: { id: request.body.folderId } });
 
-    if (!user) {
+    if (!user || !folder) {
         return reply.code(500).send({ message: "Something went wrong. Please try again" });
+    }
+
+    if (user.id != folder.ownerId) {
+        return reply
+            .code(403)
+            .send({ message: "You do not have permission to create an upload token for this folder" });
     }
 
     const { description, folderId, fileAccess } = request.body;
