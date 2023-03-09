@@ -3,6 +3,7 @@ import fs from "fs";
 import util from "util";
 import { pipeline } from "stream";
 
+import { env } from "@env/server";
 import type { UploadFileQuerystring, GetFileQuerystring } from "./fs.schemas";
 
 const pump = util.promisify(pipeline);
@@ -32,13 +33,21 @@ export async function uploadFileHandler(
         },
     });
 
+    let prefix = "";
+
+    if (env.NODE_ENV == "docker") {
+        prefix = "/FileStore/";
+    } else {
+        prefix = "./FileStore/";
+    }
+
     // Verify correct folder structure exists, otherwise create it
-    if (!fs.existsSync("./FileStore/" + request.user.id)) {
-        fs.mkdirSync("./FileStore/" + request.user.id, { recursive: true });
+    if (!fs.existsSync(prefix + request.user.id)) {
+        fs.mkdirSync(prefix + request.user.id, { recursive: true });
     }
 
     // Save file to appropriate FileStore
-    await pump(fileData.file, fs.createWriteStream("./FileStore/" + request.user.id + "/" + fileDetails.id));
+    await pump(fileData.file, fs.createWriteStream(prefix + request.user.id + "/" + fileDetails.id));
 
     return reply.code(201).send({ status: "success", id: fileDetails.id });
 }

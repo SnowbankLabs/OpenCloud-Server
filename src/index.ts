@@ -10,13 +10,14 @@ import FastifyMultipart from "@fastify/multipart";
 import FastifyStatic from "@fastify/static";
 import path from "path";
 
+import { env } from "@env/server";
 import authRouter from "@systems/auth/auth.routes";
 import { authSchemas } from "@systems/auth/auth.schemas";
 import fileSystemRouter from "@systems/fs/fs.routes";
 import { fsSchemas } from "@systems/fs/fs.schemas";
 
 // Fastify Types
-declare module 'fastify' {
+declare module "fastify" {
     interface FastifyRequest {
         authenticated: boolean;
     }
@@ -35,10 +36,18 @@ void server.register(FastifyMultipart, {
         fileSize: 10 * 1024 * 1024 * 1024,
     },
 });
-void server.register(FastifyStatic, {
-    root: path.join(__dirname, "../", "FileStore"),
-    prefix: "/FileStore/",
-});
+
+if (env.NODE_ENV == "docker") {
+    void server.register(FastifyStatic, {
+        root: path.join("/", "FileStore"),
+        prefix: "/FileStore/",
+    });
+} else {
+    void server.register(FastifyStatic, {
+        root: path.join(__dirname, "../", "FileStore"),
+        prefix: "/FileStore/",
+    });
+}
 
 // Register Route Schemas
 for (const schema of [...authSchemas, ...fsSchemas]) {
