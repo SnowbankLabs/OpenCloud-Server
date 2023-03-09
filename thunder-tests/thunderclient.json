@@ -108,5 +108,58 @@
       "form": []
     },
     "tests": []
+  },
+  {
+    "_id": "0731f35c-4b3c-45e1-82f3-5570222557d2",
+    "colId": "224539bd-5c1b-42a1-a06c-9aecdf7fc4bf",
+    "containerId": "0f4bfb20-b81f-49ee-9955-14f95437a26d",
+    "name": "Create Upload Token",
+    "url": "http://localhost:8080/api/auth/create-upload-token",
+    "method": "POST",
+    "sortNum": 50000,
+    "created": "2023-03-09T07:17:42.803Z",
+    "modified": "2023-03-09T08:20:51.251Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n  \"folderId\": \"clf0s0j8700024vtc1hfc5jiv\",\n  \"fileAccess\": \"PUBLIC\"\n}",
+      "form": []
+    },
+    "auth": {
+      "type": "bearer",
+      "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImNsZjBzMGo2MTAwMDA0dnRjZ2xxbnNnZ3IiLCJ0eXBlIjoiQWNjZXNzVG9rZW4iLCJpYXQiOjE2NzgzNTAwNDIsImV4cCI6MTY3ODM1MDk0Mn0.0pNWTuRPx66CxpdODevvoyLMd47C2j0w9hre8f_IKig"
+    },
+    "tests": []
+  },
+  {
+    "_id": "21dabec1-1a36-4e3e-8c60-afb03c81e39f",
+    "colId": "224539bd-5c1b-42a1-a06c-9aecdf7fc4bf",
+    "containerId": "2358960c-cc91-46c9-9b5e-aed0745367b4",
+    "name": "Upload File Using Token",
+    "url": "http://localhost:8080/api/files/token-upload",
+    "method": "POST",
+    "sortNum": 50000,
+    "created": "2023-03-09T07:22:29.456Z",
+    "modified": "2023-03-09T08:21:03.043Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "formdata",
+      "raw": "",
+      "form": [
+        {
+          "name": "uploadToken",
+          "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImNsZjB1YWJtMDAwMDI0djBzNHI5MGxzbnIiLCJ0eXBlIjoiVXBsb2FkVG9rZW4iLCJpYXQiOjE2NzgzNTAwNTF9.vhdQ0523VffHWeOg7367Q3S-7hDVqHjvKYrCmjFOmuA"
+        }
+      ],
+      "files": [
+        {
+          "name": "file",
+          "value": "c:\\Users\\Michael Wang\\Downloads\\F1_22_lhBVBMoShl.jpg"
+        }
+      ]
+    },
+    "tests": []
   }
 ]

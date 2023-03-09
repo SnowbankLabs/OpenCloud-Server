@@ -1,7 +1,7 @@
 import type { FastifyInstance } from "fastify";
 
 import { $ref } from "./fs.schemas";
-import { uploadFileHandler, getFileHandler } from "./fs.handlers";
+import { uploadHandler, tokenUploadHandler, getFileHandler } from "./fs.handlers";
 
 async function fileSystemRouter(server: FastifyInstance) {
     server.route({
@@ -12,7 +12,16 @@ async function fileSystemRouter(server: FastifyInstance) {
             querystring: $ref("uploadFileQuerySchema"),
             response: { 201: $ref("uploadFileResponseSchema") },
         },
-        handler: uploadFileHandler,
+        handler: uploadHandler,
+    });
+
+    server.route({
+        method: "POST",
+        url: "/token-upload",
+        schema: {
+            response: { 201: $ref("uploadFileResponseSchema") },
+        },
+        handler: tokenUploadHandler,
     });
 
     server.route({
