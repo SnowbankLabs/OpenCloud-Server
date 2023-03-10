@@ -16,7 +16,10 @@ const accessControlPlugin: FastifyPluginAsync = fp(async (server) => {
             return false;
         }
 
-        if (accessRule.method == "IP_ADDRESS" && accessRule.match == request.ip) {
+        if (accessRule.type == "ALLOW" && accessRule.method == "IP_ADDRESS" && accessRule.match == request.ip) {
+            return true;
+        }
+        if (accessRule.type == "DISALLOW" && accessRule.method == "IP_ADDRESS" && accessRule.match != request.ip) {
             return true;
         }
 
