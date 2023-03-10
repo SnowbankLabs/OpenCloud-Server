@@ -35,21 +35,31 @@ export async function uploadHandler(
         },
     });
 
-    let prefix = "";
+    let folderPath = "";
 
     if (env.NODE_ENV == "docker") {
-        prefix = "/FileStore/";
+        folderPath = "/FileStore/" + request.user.id;
     } else {
-        prefix = "./FileStore/";
+        folderPath = "./FileStore/" + request.user.id;
     }
 
+    const filePath = folderPath + "/" + fileDetails.id;
+
     // Verify correct folder structure exists, otherwise create it
-    if (!fs.existsSync(prefix + request.user.id)) {
-        fs.mkdirSync(prefix + request.user.id, { recursive: true });
+    if (!fs.existsSync(folderPath)) {
+        fs.mkdirSync(folderPath, { recursive: true });
     }
 
     // Save file to appropriate FileStore
-    await pump(fileData.file, fs.createWriteStream(prefix + request.user.id + "/" + fileDetails.id));
+    await pump(fileData.file, fs.createWriteStream(filePath));
+
+    // Save file size to db
+    const sizeInBytes = fs.statSync(filePath).size;
+
+    await this.prisma.file.update({
+        where: { id: fileDetails.id },
+        data: { fileSize: sizeInBytes },
+    })
 
     return reply.code(201).send({ status: "success", id: fileDetails.id });
 }
@@ -95,21 +105,31 @@ export async function tokenUploadHandler(this: FastifyInstance, request: Fastify
         },
     });
 
-    let prefix = "";
+    let folderPath = "";
 
     if (env.NODE_ENV == "docker") {
-        prefix = "/FileStore/";
+        folderPath = "/FileStore/" + uploadToken.userId;
     } else {
-        prefix = "./FileStore/";
+        folderPath = "./FileStore/" + uploadToken.userId;
     }
 
+    const filePath = folderPath + "/" + fileDetails.id;
+
     // Verify correct folder structure exists, otherwise create it
-    if (!fs.existsSync(prefix + uploadToken.userId)) {
-        fs.mkdirSync(prefix + uploadToken.userId, { recursive: true });
+    if (!fs.existsSync(folderPath)) {
+        fs.mkdirSync(folderPath, { recursive: true });
     }
 
     // Save file to appropriate FileStore
-    await pump(fileData.file, fs.createWriteStream(prefix + uploadToken.userId + "/" + fileDetails.id));
+    await pump(fileData.file, fs.createWriteStream(filePath));
+
+    // Save file size to db
+    const sizeInBytes = fs.statSync(filePath).size;
+
+    await this.prisma.file.update({
+        where: { id: fileDetails.id },
+        data: { fileSize: sizeInBytes },
+    })
 
     return reply.code(201).send({ status: "success", id: fileDetails.id });
 }
