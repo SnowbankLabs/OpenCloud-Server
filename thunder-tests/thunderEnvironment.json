@@ -1,36 +1,36 @@
 [
-  {
-    "_id": "0762e7ed-0cd3-4799-a0d3-42ca280c3402",
-    "name": "OpenCloud",
-    "default": true,
-    "sortNum": 10000,
-    "created": "2023-03-10T08:34:47.524Z",
-    "modified": "2023-03-10T08:34:47.524Z",
-    "data": [
-      {
-        "name": "username",
-        "value": "devmwang"
-      },
-      {
-        "name": "password",
-        "value": "TestPass"
-      },
-      {
-        "name": "accessToken",
-        "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImNsZjBzMGo2MTAwMDA0dnRjZ2xxbnNnZ3IiLCJ0eXBlIjoiQWNjZXNzVG9rZW4iLCJpYXQiOjE2Nzg0Mzc0ODIsImV4cCI6MTY3ODQzODM4Mn0.KysahaFPPYjtQeJjcWChr97MAZ6Oj5iuvIvLxjK_Bss"
-      },
-      {
-        "name": "refreshToken",
-        "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImNsZjJhYzl2ODAwMGd0ZjAxaGZoMmpudXEiLCJ0eXBlIjoiUmVmcmVzaFRva2VuIiwiaWF0IjoxNjc4NDM3NDgyLCJleHAiOjE2NzkwNDIyODJ9.cMLJdllTTBIsJ14yXxsoQnTh7HoF5jLoMnoXPaP6mN8"
-      },
-      {
-        "name": "uploadToken",
-        "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImNsZjB1YWJtMDAwMDI0djBzNHI5MGxzbnIiLCJ0eXBlIjoiVXBsb2FkVG9rZW4iLCJpYXQiOjE2NzgzNTAwNTF9.vhdQ0523VffHWeOg7367Q3S-7hDVqHjvKYrCmjFOmuA"
-      },
-      {
-        "name": "rootFolderId",
-        "value": "clf0s0j8700024vtc1hfc5jiv"
-      }
-    ]
-  }
+    {
+        "_id": "0762e7ed-0cd3-4799-a0d3-42ca280c3402",
+        "name": "OpenCloud",
+        "default": true,
+        "sortNum": 10000,
+        "created": "2023-03-10T08:34:47.524Z",
+        "modified": "2023-03-10T08:34:47.524Z",
+        "data": [
+            {
+                "name": "username",
+                "value": ""
+            },
+            {
+                "name": "password",
+                "value": ""
+            },
+            {
+                "name": "accessToken",
+                "value": ""
+            },
+            {
+                "name": "refreshToken",
+                "value": ""
+            },
+            {
+                "name": "uploadToken",
+                "value": ""
+            },
+            {
+                "name": "rootFolderId",
+                "value": ""
+            }
+        ]
+    }
 ]
