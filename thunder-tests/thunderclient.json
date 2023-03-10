@@ -161,5 +161,28 @@
       ]
     },
     "tests": []
+  },
+  {
+    "_id": "17e4a96c-74fe-457d-9496-1d5ef05a1ee6",
+    "colId": "224539bd-5c1b-42a1-a06c-9aecdf7fc4bf",
+    "containerId": "0f4bfb20-b81f-49ee-9955-14f95437a26d",
+    "name": "Create Access Rule",
+    "url": "http://localhost:8080/api/auth/create-access-rule",
+    "method": "POST",
+    "sortNum": 40000,
+    "created": "2023-03-10T06:22:41.965Z",
+    "modified": "2023-03-10T06:24:07.758Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n  \"name\": \"Allow Home IP\",\n  \"type\": \"ALLOW\",\n  \"method\": \"IP_ADDRESS\",\n  \"match\": \"127.0.0.1\"\n}",
+      "form": []
+    },
+    "auth": {
+      "type": "bearer",
+      "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImNsZjBzMGo2MTAwMDA0dnRjZ2xxbnNnZ3IiLCJ0eXBlIjoiQWNjZXNzVG9rZW4iLCJpYXQiOjE2Nzg0Mjk0NDIsImV4cCI6MTY3ODQzMDM0Mn0.pzIoPZhftJ2pCBaGfN6cGf1bfHJOXcYoZWlwn_PBYX8"
+    },
+    "tests": []
   }
 ]
