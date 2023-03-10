@@ -4,53 +4,73 @@
     "colId": "224539bd-5c1b-42a1-a06c-9aecdf7fc4bf",
     "containerId": "0f4bfb20-b81f-49ee-9955-14f95437a26d",
     "name": "Login",
-    "url": "http://localhost:8080/api/auth/login",
+    "url": "api/auth/login",
     "method": "POST",
     "sortNum": 20000,
     "created": "2023-03-02T02:30:48.000Z",
-    "modified": "2023-03-02T02:42:05.655Z",
+    "modified": "2023-03-10T08:36:55.760Z",
     "headers": [],
     "params": [],
     "body": {
       "type": "json",
-      "raw": "{\n  \"username\": \"devmwang\",\n  \"password\": \"TestPass\"\n}",
+      "raw": "{\n  \"username\": \"{{username}}\",\n  \"password\": \"{{password}}\"\n}",
       "form": []
     },
-    "tests": []
+    "tests": [
+      {
+        "type": "set-env-var",
+        "custom": "json.accessToken",
+        "action": "setto",
+        "value": "{{accessToken}}"
+      },
+      {
+        "type": "set-env-var",
+        "custom": "json.refreshToken",
+        "action": "setto",
+        "value": "{{refreshToken}}"
+      }
+    ]
   },
   {
     "_id": "90412365-994a-4afa-bde4-de01f0a7db44",
     "colId": "224539bd-5c1b-42a1-a06c-9aecdf7fc4bf",
     "containerId": "0f4bfb20-b81f-49ee-9955-14f95437a26d",
     "name": "Get Info",
-    "url": "http://localhost:8080/api/auth/info",
+    "url": "api/auth/info",
     "method": "GET",
     "sortNum": 30000,
     "created": "2023-03-02T02:30:51.697Z",
-    "modified": "2023-03-05T00:47:31.207Z",
+    "modified": "2023-03-10T08:39:13.943Z",
     "headers": [],
     "params": [],
     "auth": {
       "type": "bearer",
-      "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImNsZXRsZGkwZjAwMDA0djBrM2lpeG9lYTEiLCJ0eXBlIjoiQWNjZXNzVG9rZW4iLCJpYXQiOjE2Nzc5NzcyMzYsImV4cCI6MTY3Nzk3ODEzNn0.EZF-faPQ5Ml5ZUtFwrOhZVMRyhR2RXSsBbnZhv6V93A"
+      "bearer": "{{accessToken}}"
     },
-    "tests": []
+    "tests": [
+      {
+        "type": "set-env-var",
+        "custom": "json.rootFolderId",
+        "action": "setto",
+        "value": "{{rootFolderId}}"
+      }
+    ]
   },
   {
     "_id": "50ab9757-f11f-4581-86de-d5acef3e788c",
     "colId": "224539bd-5c1b-42a1-a06c-9aecdf7fc4bf",
     "containerId": "0f4bfb20-b81f-49ee-9955-14f95437a26d",
     "name": "Create User",
-    "url": "http://localhost:8080/api/auth/create",
+    "url": "api/auth/create",
     "method": "POST",
     "sortNum": 10000,
     "created": "2023-03-02T02:35:28.925Z",
-    "modified": "2023-03-02T02:35:53.927Z",
+    "modified": "2023-03-10T08:37:13.212Z",
     "headers": [],
     "params": [],
     "body": {
       "type": "json",
-      "raw": "{\n  \"username\": \"devmwang\",\n  \"password\": \"TestPass\"\n}",
+      "raw": "{\n  \"username\": \"{{username}}\",\n  \"password\": \"{{password}}\"\n}",
       "form": []
     },
     "tests": []
@@ -60,33 +80,22 @@
     "colId": "224539bd-5c1b-42a1-a06c-9aecdf7fc4bf",
     "containerId": "2358960c-cc91-46c9-9b5e-aed0745367b4",
     "name": "Upload File",
-    "url": "http://localhost:8080/api/files/upload?parentFolderId=cletldi2700024v0kjhvf31of",
+    "url": "api/files/upload?parentFolderId={{rootFolderId}}",
     "method": "POST",
     "sortNum": 40000,
     "created": "2023-03-03T21:43:06.159Z",
-    "modified": "2023-03-04T06:53:23.003Z",
+    "modified": "2023-03-10T08:39:39.863Z",
     "headers": [],
     "params": [
       {
         "name": "parentFolderId",
-        "value": "cletldi2700024v0kjhvf31of",
+        "value": "{{rootFolderId}}",
         "isPath": false
       }
     ],
-    "body": {
-      "type": "formdata",
-      "raw": "",
-      "form": [],
-      "files": [
-        {
-          "name": "file",
-          "value": "c:\\Users\\Michael Wang\\Downloads\\F1_22_lhBVBMoShl.jpg"
-        }
-      ]
-    },
     "auth": {
       "type": "bearer",
-      "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImNsZXRsZGkwZjAwMDA0djBrM2lpeG9lYTEiLCJpYXQiOjE2Nzc5MTI3OTgsImV4cCI6MTY3NzkxMzY5OH0.vCkcLqyg-vD_3Tc_DH2MTLzR4y-9kqUd83-JZYpB-rg"
+      "bearer": "{{accessToken}}"
     },
     "tests": []
   },
@@ -95,40 +104,53 @@
     "colId": "224539bd-5c1b-42a1-a06c-9aecdf7fc4bf",
     "containerId": "0f4bfb20-b81f-49ee-9955-14f95437a26d",
     "name": "Refresh Credentials",
-    "url": "http://localhost:8080/api/auth/refresh",
+    "url": "api/auth/refresh",
     "method": "POST",
     "sortNum": 25000,
     "created": "2023-03-04T23:55:21.819Z",
-    "modified": "2023-03-05T00:47:43.805Z",
+    "modified": "2023-03-10T08:37:49.494Z",
     "headers": [],
     "params": [],
     "body": {
       "type": "json",
-      "raw": "{\n  \"refreshToken\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImNsZXVvYm1hbTAwMDA0djd3MTQxMjhjbW0iLCJ0eXBlIjoiUmVmcmVzaFRva2VuIiwiaWF0IjoxNjc3OTc3MjM2LCJleHAiOjE2Nzg1ODIwMzZ9.n_rixIuzCZlnt-HGhXNkiFAk2DhbkYDtrDHm6_oArSI\"\n}",
+      "raw": "{\n  \"refreshToken\": \"{{refreshToken}}\"\n}",
       "form": []
     },
-    "tests": []
+    "tests": [
+      {
+        "type": "set-env-var",
+        "custom": "json.accessToken",
+        "action": "setto",
+        "value": "{{accessToken}}"
+      },
+      {
+        "type": "set-env-var",
+        "custom": "json.refreshToken",
+        "action": "setto",
+        "value": "{{refreshToken}}"
+      }
+    ]
   },
   {
     "_id": "0731f35c-4b3c-45e1-82f3-5570222557d2",
     "colId": "224539bd-5c1b-42a1-a06c-9aecdf7fc4bf",
     "containerId": "0f4bfb20-b81f-49ee-9955-14f95437a26d",
     "name": "Create Upload Token",
-    "url": "http://localhost:8080/api/auth/create-upload-token",
+    "url": "api/auth/create-upload-token",
     "method": "POST",
     "sortNum": 50000,
     "created": "2023-03-09T07:17:42.803Z",
-    "modified": "2023-03-09T08:20:51.251Z",
+    "modified": "2023-03-10T08:40:18.157Z",
     "headers": [],
     "params": [],
     "body": {
       "type": "json",
-      "raw": "{\n  \"folderId\": \"clf0s0j8700024vtc1hfc5jiv\",\n  \"fileAccess\": \"PUBLIC\"\n}",
+      "raw": "{\n  \"folderId\": \"{{rootFolderId}}\",\n  \"fileAccess\": \"PUBLIC\"\n}",
       "form": []
     },
     "auth": {
       "type": "bearer",
-      "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImNsZjBzMGo2MTAwMDA0dnRjZ2xxbnNnZ3IiLCJ0eXBlIjoiQWNjZXNzVG9rZW4iLCJpYXQiOjE2NzgzNTAwNDIsImV4cCI6MTY3ODM1MDk0Mn0.0pNWTuRPx66CxpdODevvoyLMd47C2j0w9hre8f_IKig"
+      "bearer": "{{accessToken}}"
     },
     "tests": []
   },
@@ -137,11 +159,11 @@
     "colId": "224539bd-5c1b-42a1-a06c-9aecdf7fc4bf",
     "containerId": "2358960c-cc91-46c9-9b5e-aed0745367b4",
     "name": "Upload File Using Token",
-    "url": "http://localhost:8080/api/files/token-upload",
+    "url": "api/files/token-upload",
     "method": "POST",
     "sortNum": 50000,
     "created": "2023-03-09T07:22:29.456Z",
-    "modified": "2023-03-09T08:21:03.043Z",
+    "modified": "2023-03-10T08:39:58.869Z",
     "headers": [],
     "params": [],
     "body": {
@@ -150,15 +172,10 @@
       "form": [
         {
           "name": "uploadToken",
-          "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImNsZjB1YWJtMDAwMDI0djBzNHI5MGxzbnIiLCJ0eXBlIjoiVXBsb2FkVG9rZW4iLCJpYXQiOjE2NzgzNTAwNTF9.vhdQ0523VffHWeOg7367Q3S-7hDVqHjvKYrCmjFOmuA"
+          "value": "{{uploadToken}}"
         }
       ],
-      "files": [
-        {
-          "name": "file",
-          "value": "c:\\Users\\Michael Wang\\Downloads\\F1_22_lhBVBMoShl.jpg"
-        }
-      ]
+      "files": []
     },
     "tests": []
   },
@@ -167,11 +184,11 @@
     "colId": "224539bd-5c1b-42a1-a06c-9aecdf7fc4bf",
     "containerId": "0f4bfb20-b81f-49ee-9955-14f95437a26d",
     "name": "Create Access Rule",
-    "url": "http://localhost:8080/api/auth/create-access-rule",
+    "url": "api/auth/create-access-rule",
     "method": "POST",
     "sortNum": 40000,
     "created": "2023-03-10T06:22:41.965Z",
-    "modified": "2023-03-10T06:24:07.758Z",
+    "modified": "2023-03-10T08:38:23.142Z",
     "headers": [],
     "params": [],
     "body": {
@@ -181,7 +198,7 @@
     },
     "auth": {
       "type": "bearer",
-      "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImNsZjBzMGo2MTAwMDA0dnRjZ2xxbnNnZ3IiLCJ0eXBlIjoiQWNjZXNzVG9rZW4iLCJpYXQiOjE2Nzg0Mjk0NDIsImV4cCI6MTY3ODQzMDM0Mn0.pzIoPZhftJ2pCBaGfN6cGf1bfHJOXcYoZWlwn_PBYX8"
+      "bearer": "{{accessToken}}"
     },
     "tests": []
   }

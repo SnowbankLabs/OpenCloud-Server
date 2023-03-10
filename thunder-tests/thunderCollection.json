@@ -24,7 +24,7 @@
       "headers": [],
       "tests": [],
       "options": {
-        "baseUrl": "http://localhost:8080/api"
+        "baseUrl": "https://opencloud.devmwang.com/"
       }
     }
   }
