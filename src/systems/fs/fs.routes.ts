@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/unbound-method */
 import type { FastifyInstance } from "fastify";
 
 import { $ref } from "./fs.schemas";
