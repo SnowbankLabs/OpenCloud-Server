@@ -7,10 +7,8 @@ import { env } from "@env/server";
 // Use TypeScript module augmentation to declare the type of server.authenticate to be JWT authentication function
 declare module "fastify" {
     interface FastifyInstance {
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        authenticate: any;
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        optionalAuthenticate: any
+        authenticate(request: FastifyRequest, reply: FastifyReply): Promise<void>;
+        optionalAuthenticate(request: FastifyRequest): Promise<void>;
     }
 }
 

@@ -76,7 +76,6 @@ export async function tokenUploadHandler(this: FastifyInstance, request: Fastify
     }
 
     for (const ruleId of uploadToken.accessControlRuleIds) {
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-assignment
         const result = await this.verifyAccessControlRule(request, ruleId);
         if (!result) {
             return reply.code(401).send({ status: "fail", error: "Unauthorized" });

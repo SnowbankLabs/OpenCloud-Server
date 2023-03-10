@@ -8,6 +8,8 @@ module.exports = {
             },
             rules: {
                 "@typescript-eslint/require-await": "off",
+                "no-unused-vars": "off",
+                "@typescript-eslint/no-unused-vars": ["error"],
             },
         },
     ],

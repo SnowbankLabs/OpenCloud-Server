@@ -3,8 +3,7 @@ import fp from "fastify-plugin";
 
 declare module "fastify" {
     interface FastifyInstance {
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        verifyAccessControlRule: any;
+        verifyAccessControlRule(request: FastifyRequest, ruleId: string): Promise<boolean>;
     }
 }
 
