@@ -28,6 +28,7 @@ export async function uploadHandler(
             fileName: fileData.filename,
             fileType: fileData.mimetype,
             ownerId: request.user.id,
+            fileAccess: "PRIVATE",
             parentFolder: {
                 connect: { id: parentFolderId },
             },
