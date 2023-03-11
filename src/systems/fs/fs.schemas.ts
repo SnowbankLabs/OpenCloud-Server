@@ -13,7 +13,7 @@ const uploadFileResponseSchema = z.object({
     status: z.string(),
 });
 
-const getFileQuerySchema = z.object({
+const getFileParamsSchema = z.object({
     fileId: z.string({
         required_error: "File ID is required",
         invalid_type_error: "File ID must be a string",
@@ -21,9 +21,9 @@ const getFileQuerySchema = z.object({
 });
 
 export type UploadFileQuerystring = z.infer<typeof uploadFileQuerySchema>;
-export type GetFileQuerystring = z.infer<typeof getFileQuerySchema>;
+export type GetFileParams = z.infer<typeof getFileParamsSchema>;
 
 export const { schemas: fsSchemas, $ref } = buildJsonSchemas(
-    { uploadFileQuerySchema, uploadFileResponseSchema, getFileQuerySchema },
+    { uploadFileQuerySchema, uploadFileResponseSchema, getFileParamsSchema },
     { $id: "FS" },
 );

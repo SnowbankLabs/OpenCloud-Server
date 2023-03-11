@@ -27,10 +27,10 @@ async function fileSystemRouter(server: FastifyInstance) {
 
     server.route({
         method: "GET",
-        url: "/get",
+        url: "/get/:fileId",
         onRequest: [server.optionalAuthenticate],
         schema: {
-            querystring: $ref("getFileQuerySchema"),
+            params: $ref("getFileParamsSchema"),
         },
         handler: getFileHandler,
     });

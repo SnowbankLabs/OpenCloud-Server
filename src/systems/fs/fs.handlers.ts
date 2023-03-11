@@ -5,7 +5,7 @@ import util from "util";
 import { pipeline } from "stream";
 
 import { env } from "@env/server";
-import type { UploadFileQuerystring, GetFileQuerystring } from "./fs.schemas";
+import type { UploadFileQuerystring, GetFileParams } from "./fs.schemas";
 
 const pump = util.promisify(pipeline);
 
@@ -136,11 +136,11 @@ export async function tokenUploadHandler(this: FastifyInstance, request: Fastify
 
 export async function getFileHandler(
     this: FastifyInstance,
-    request: FastifyRequest<{ Querystring: GetFileQuerystring }>,
+    request: FastifyRequest<{ Params: GetFileParams }>,
     reply: FastifyReply,
 ) {
     const fileData = await this.prisma.file.findUnique({
-        where: { id: request.query.fileId },
+        where: { id: request.params.fileId },
     });
 
     if (!fileData) {
