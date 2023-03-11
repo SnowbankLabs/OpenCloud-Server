@@ -57,11 +57,11 @@ for (const schema of [...authSchemas, ...fsSchemas]) {
 }
 
 // Register Routes
-void server.register(authRouter, { prefix: "/api/auth" });
-void server.register(fileSystemRouter, { prefix: "/api/files" });
+void server.register(authRouter, { prefix: "/v1/auth" });
+void server.register(fileSystemRouter, { prefix: "/v1/files" });
 
 // Server Health Check
-server.get("/api/health", async () => {
+server.get("/v1/health", async () => {
     return { status: "OK" };
 });
 
